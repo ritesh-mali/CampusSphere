@@ -40,20 +40,20 @@ const ResumeAnalyzerPanel = () => {
   return (
     <div className="section-resume-analyzer w-full max-w-3xl mx-auto py-4 px-2">
       <Heading title="Resume Analyzer" />
-      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-6">
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-6 dark:text-slate-400">
         Upload a PDF resume. Python (NLTK + heuristics) checks grammar patterns, compares
         skills to a built-in keyword list, and estimates a simple ATS-style keyword score.
       </p>
 
       <div className="rounded-2xl border border-blue-100 dark:border-gray-700 bg-white dark:bg-gray-900 p-6 shadow-sm mb-6">
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 dark:text-slate-300">
           Resume (PDF)
         </label>
         <input
           type="file"
           accept="application/pdf"
           onChange={(e) => setFile(e.target.files?.[0] || null)}
-          className="block w-full text-sm text-gray-600 dark:text-gray-300"
+          className="block w-full text-sm text-gray-600 dark:text-gray-300 dark:text-slate-400"
         />
         <CustomButton className="mt-4" onClick={onAnalyze} disabled={loading}>
           {loading ? "Analyzing…" : "Analyze resume"}
@@ -61,17 +61,17 @@ const ResumeAnalyzerPanel = () => {
       </div>
 
       {result && (
-        <div className="rounded-2xl border border-gray-200 dark:border-gray-700 bg-gradient-to-br from-white to-blue-50/80 dark:from-gray-900 dark:to-gray-800 p-6 shadow-md space-y-4">
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-700 bg-gradient-to-br from-white to-blue-50/80 dark:from-gray-900 dark:to-gray-800 p-6 shadow-md space-y-4 dark:border-slate-800">
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
             Analysis result
           </h3>
 
           <div>
-            <div className="flex justify-between text-sm mb-1 text-gray-700 dark:text-gray-300">
+            <div className="flex justify-between text-sm mb-1 text-gray-700 dark:text-gray-300 dark:text-slate-300">
               <span>Overall score</span>
               <span className="font-bold">{score} / 100</span>
             </div>
-            <div className="h-3 w-full rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
+            <div className="h-3 w-full rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden dark:bg-slate-800">
               <div
                 className="h-full rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 transition-all duration-500"
                 style={{ width: `${score}%` }}
@@ -90,7 +90,7 @@ const ResumeAnalyzerPanel = () => {
               <h4 className="font-medium text-gray-900 dark:text-white mb-2">
                 Suggestions
               </h4>
-              <ul className="list-disc pl-5 text-sm text-gray-700 dark:text-gray-300 space-y-1">
+              <ul className="list-disc pl-5 text-sm text-gray-700 dark:text-gray-300 space-y-1 dark:text-slate-300">
                 {result.suggestions.map((s, i) => (
                   <li key={i}>{s}</li>
                 ))}
@@ -121,7 +121,7 @@ const ResumeAnalyzerPanel = () => {
               <h4 className="font-medium text-gray-900 dark:text-white mb-2">
                 Grammar / formatting notes
               </h4>
-              <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2">
+              <ul className="text-sm text-gray-700 dark:text-gray-300 space-y-2 dark:text-slate-300">
                 {result.grammar_issues.slice(0, 10).map((g, i) => (
                   <li key={i} className="border-l-2 border-blue-400 pl-2">
                     {g.message}
@@ -139,7 +139,7 @@ const ResumeAnalyzerPanel = () => {
 function ScoreChip({ label, value }) {
   return (
     <div className="rounded-lg bg-white/80 dark:bg-gray-800/80 border border-gray-100 dark:border-gray-700 p-3 text-center">
-      <div className="text-xs text-gray-500 dark:text-gray-400">{label}</div>
+      <div className="text-xs text-gray-500 dark:text-gray-400 dark:text-slate-400">{label}</div>
       <div className="text-xl font-bold text-blue-600 dark:text-blue-400">{value}</div>
     </div>
   );

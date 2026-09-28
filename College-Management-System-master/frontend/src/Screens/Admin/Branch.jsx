@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { toast } from "react-hot-toast";
 import { MdOutlineDelete, MdEdit } from "react-icons/md";
 import { IoMdAdd, IoMdClose } from "react-icons/io";
@@ -160,16 +161,16 @@ const Branch = () => {
 
       {dataLoading && <Loading />}
 
-      {showAddForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-          <div className="bg-white rounded-lg w-[500px] max-h-[90vh] overflow-y-auto">
+      {showAddForm && createPortal(
+        <div className="fixed inset-0 z-[9999] bg-black bg-opacity-50 flex justify-center items-center p-4">
+          <div className="bg-white dark:bg-slate-900 dark:text-white rounded-lg w-[500px] max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-center p-6 border-b">
               <h2 className="text-xl font-semibold">
                 {isEditing ? "Edit Branch" : "Add New Branch"}
               </h2>
               <button
                 onClick={() => setShowAddForm(false)}
-                className="text-gray-500 hover:text-gray-700"
+                className="text-gray-500 hover:text-gray-700 dark:text-slate-400 dark:hover:text-slate-300"
               >
                 <IoMdClose className="text-3xl" />
               </button>
@@ -179,7 +180,7 @@ const Branch = () => {
               <div>
                 <label
                   htmlFor="name"
-                  className="block text-sm font-medium text-gray-700 mb-2"
+                  className="block text-sm font-medium text-gray-700 mb-2 dark:text-slate-300"
                 >
                   Branch Name
                 </label>
@@ -188,14 +189,14 @@ const Branch = () => {
                   id="name"
                   value={data.name}
                   onChange={(e) => setData({ ...data, name: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                 />
               </div>
 
               <div>
                 <label
                   htmlFor="branchId"
-                  className="block text-sm font-medium text-gray-700 mb-2"
+                  className="block text-sm font-medium text-gray-700 mb-2 dark:text-slate-300"
                 >
                   Branch ID
                 </label>
@@ -206,7 +207,7 @@ const Branch = () => {
                   onChange={(e) =>
                     setData({ ...data, branchId: e.target.value })
                   }
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                 />
               </div>
 
@@ -223,12 +224,13 @@ const Branch = () => {
               </div>
             </form>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {!dataLoading && (
         <div className="mt-8 w-full">
-          <table className="text-sm min-w-full bg-white">
+          <table className="text-sm min-w-full bg-white dark:bg-slate-900/50 dark:text-slate-200">
             <thead>
               <tr className="bg-blue-500 text-white">
                 <th className="py-4 px-6 text-left font-semibold">
@@ -244,7 +246,7 @@ const Branch = () => {
             <tbody>
               {branch && branch.length > 0 ? (
                 branch.map((item, index) => (
-                  <tr key={index} className="border-b hover:bg-blue-50">
+                  <tr key={index} className="border-b dark:border-slate-800 hover:bg-blue-50 dark:hover:bg-slate-800/50">
                     <td className="py-4 px-6">{item.name}</td>
                     <td className="py-4 px-6">{item.branchId}</td>
                     <td className="py-4 px-6">

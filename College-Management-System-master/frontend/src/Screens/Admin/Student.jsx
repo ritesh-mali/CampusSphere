@@ -338,7 +338,7 @@ const Student = () => {
           <form onSubmit={searchStudents} className="flex items-center">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-[90%] mx-auto">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                   Enrollment Number
                 </label>
                 <input
@@ -346,13 +346,13 @@ const Student = () => {
                   name="enrollmentNo"
                   value={searchParams.enrollmentNo}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                   placeholder="Enter enrollment number"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                   Name
                 </label>
                 <input
@@ -360,20 +360,20 @@ const Student = () => {
                   name="name"
                   value={searchParams.name}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                   placeholder="Enter student name"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                   Semester
                 </label>
                 <select
                   name="semester"
                   value={searchParams.semester}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                 >
                   <option value="">Select Semester</option>
                   {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
@@ -385,14 +385,14 @@ const Student = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                   Branch
                 </label>
                 <select
                   name="branch"
                   value={searchParams.branch}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                 >
                   <option value="">Select Branch</option>
                   {branches?.map((branch) => (
@@ -416,7 +416,7 @@ const Student = () => {
           </form>
 
           {!hasSearched && (
-            <div className="text-center mt-8 text-gray-600 flex flex-col items-center justify-center my-10 bg-white p-10 rounded-lg mx-auto w-[40%]">
+            <div className="text-center mt-8 text-gray-600 flex flex-col items-center justify-center my-10 bg-white p-10 rounded-lg mx-auto w-[40%] dark:text-slate-400">
               <img
                 src="/assets/filter.svg"
                 alt="Select filters"
@@ -434,9 +434,9 @@ const Student = () => {
             <div className="mt-8">
               <h2 className="text-xl font-semibold mb-4">Search Results</h2>
               <div className="overflow-x-auto">
-                <table className="min-w-full bg-white border border-gray-300">
+                <table className="min-w-full bg-white dark:bg-slate-900/50 dark:text-slate-200 border border-gray-300 dark:border-slate-700">
                   <thead>
-                    <tr className="bg-gray-100">
+                    <tr className="bg-gray-100 dark:bg-slate-900/40">
                       <th className="px-6 py-3 border-b text-left">Profile</th>
                       <th className="px-6 py-3 border-b text-left">Name</th>
                       <th className="px-6 py-3 border-b text-left">E. No</th>
@@ -515,10 +515,10 @@ const Student = () => {
 
       {showAddForm && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-8 w-[90%] max-w-4xl max-h-[90vh] overflow-y-auto relative">
+          <div className="bg-white dark:bg-slate-900 dark:text-white rounded-lg p-8 w-[90%] max-w-4xl max-h-[90vh] overflow-y-auto relative">
             <button
               onClick={resetForm}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100 transition-colors"
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100 transition-colors dark:text-slate-400 dark:hover:text-slate-300"
             >
               <IoMdClose className="text-2xl" />
             </button>
@@ -533,7 +533,7 @@ const Student = () => {
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                     First Name
                   </label>
                   <input
@@ -542,13 +542,13 @@ const Student = () => {
                     onChange={(e) =>
                       handleFormInputChange("firstName", e.target.value)
                     }
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                     Middle Name
                   </label>
                   <input
@@ -557,12 +557,12 @@ const Student = () => {
                     onChange={(e) =>
                       handleFormInputChange("middleName", e.target.value)
                     }
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                     Last Name
                   </label>
                   <input
@@ -571,13 +571,13 @@ const Student = () => {
                     onChange={(e) =>
                       handleFormInputChange("lastName", e.target.value)
                     }
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                     required
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                     Student Gmail / email <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -587,13 +587,13 @@ const Student = () => {
                     onChange={(e) =>
                       handleFormInputChange("email", e.target.value)
                     }
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 disabled:cursor-not-allowed dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                     placeholder="studentname@gmail.com"
                     required={!isEditing}
                     disabled={isEditing}
                     readOnly={isEditing}
                   />
-                  <p className="text-xs text-gray-500 mt-1">
+                  <p className="text-xs text-gray-500 mt-1 dark:text-slate-400">
                     {isEditing
                       ? "Login email cannot be changed here."
                       : "The student will use this exact email (and default password student123) on the login page."}
@@ -601,7 +601,7 @@ const Student = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                     Phone
                   </label>
                   <input
@@ -610,13 +610,13 @@ const Student = () => {
                     onChange={(e) =>
                       handleFormInputChange("phone", e.target.value)
                     }
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                     Semester
                   </label>
                   <select
@@ -624,7 +624,7 @@ const Student = () => {
                     onChange={(e) =>
                       handleFormInputChange("semester", e.target.value)
                     }
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                     required
                   >
                     <option value="">Select Semester</option>
@@ -637,7 +637,7 @@ const Student = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                     Branch
                   </label>
                   <select
@@ -645,7 +645,7 @@ const Student = () => {
                     onChange={(e) =>
                       handleFormInputChange("branchId", e.target.value)
                     }
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                     required
                   >
                     <option value="">Select Branch</option>
@@ -658,7 +658,7 @@ const Student = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                     Gender
                   </label>
                   <select
@@ -666,7 +666,7 @@ const Student = () => {
                     onChange={(e) =>
                       handleFormInputChange("gender", e.target.value)
                     }
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                     required
                   >
                     <option value="">Select Gender</option>
@@ -677,7 +677,7 @@ const Student = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                     Date of Birth
                   </label>
                   <input
@@ -686,13 +686,13 @@ const Student = () => {
                     onChange={(e) =>
                       handleFormInputChange("dob", e.target.value)
                     }
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                     Blood Group
                   </label>
                   <select
@@ -700,7 +700,7 @@ const Student = () => {
                     onChange={(e) =>
                       handleFormInputChange("bloodGroup", e.target.value)
                     }
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                     required
                   >
                     <option value="">Select Blood Group</option>
@@ -716,19 +716,19 @@ const Student = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                     Profile Photo
                   </label>
                   <input
                     type="file"
                     onChange={(e) => setFile(e.target.files[0])}
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                     accept="image/*"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                     Address
                   </label>
                   <input
@@ -737,13 +737,13 @@ const Student = () => {
                     onChange={(e) =>
                       handleFormInputChange("address", e.target.value)
                     }
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                     City
                   </label>
                   <input
@@ -752,13 +752,13 @@ const Student = () => {
                     onChange={(e) =>
                       handleFormInputChange("city", e.target.value)
                     }
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                     State
                   </label>
                   <input
@@ -767,13 +767,13 @@ const Student = () => {
                     onChange={(e) =>
                       handleFormInputChange("state", e.target.value)
                     }
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                     Pincode
                   </label>
                   <input
@@ -782,13 +782,13 @@ const Student = () => {
                     onChange={(e) =>
                       handleFormInputChange("pincode", e.target.value)
                     }
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                     required
                   />
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                     Country
                   </label>
                   <input
@@ -797,7 +797,7 @@ const Student = () => {
                     onChange={(e) =>
                       handleFormInputChange("country", e.target.value)
                     }
-                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                     required
                   />
                 </div>
@@ -808,7 +808,7 @@ const Student = () => {
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                         Name
                       </label>
                       <input
@@ -817,13 +817,13 @@ const Student = () => {
                         onChange={(e) =>
                           handleEmergencyContactChange("name", e.target.value)
                         }
-                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                         Relationship
                       </label>
                       <input
@@ -835,13 +835,13 @@ const Student = () => {
                             e.target.value
                           )
                         }
-                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                         required
                       />
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                         Phone
                       </label>
                       <input
@@ -850,7 +850,7 @@ const Student = () => {
                         onChange={(e) =>
                           handleEmergencyContactChange("phone", e.target.value)
                         }
-                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                         required
                       />
                     </div>
@@ -861,16 +861,16 @@ const Student = () => {
               <div className="mt-8 flex justify-between items-center gap-4">
                 <div>
                   {!isEditing ? (
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-600 dark:text-slate-400">
                       Login:{" "}
-                      <span className="font-semibold text-gray-900">
+                      <span className="font-semibold text-gray-900 dark:text-white">
                         {formData.email?.trim() || "(enter email above)"}
                       </span>{" "}
                       · default password:{" "}
                       <span className="font-semibold">student123</span>
                     </p>
                   ) : (
-                    <p className="text-sm text-gray-600">
+                    <p className="text-sm text-gray-600 dark:text-slate-400">
                       Login email is fixed. Password can be updated from the student
                       profile after login.
                     </p>

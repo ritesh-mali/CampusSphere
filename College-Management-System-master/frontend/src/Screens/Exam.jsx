@@ -473,7 +473,7 @@ const Exam = () => {
 
         {!activeExam ? (
           <div className="mt-6 w-full">
-            <table className="text-sm min-w-full bg-white dark:bg-gray-900 rounded-lg overflow-hidden">
+            <table className="text-sm min-w-full bg-white dark:bg-slate-900/50 dark:text-slate-200 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800">
               <thead>
                 <tr className="bg-blue-500 text-white">
                   <th className="py-3 px-4 text-left font-semibold">Title</th>
@@ -513,7 +513,7 @@ const Exam = () => {
             <div className="flex items-center justify-between gap-2 mb-4">
               <div>
                 <h2 className="text-xl font-semibold">{activeExam.title}</h2>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-gray-600 dark:text-gray-300 dark:text-slate-400">
                   Duration: {activeExam.durationMinutes} minutes • Semester: {activeExam.semester}
                 </p>
               </div>
@@ -523,9 +523,9 @@ const Exam = () => {
             </div>
 
             {!hasStarted ? (
-              <div className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 mb-4">
+              <div className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 mb-4 dark:border-slate-800">
                 <p className="font-medium">Start exam in fullscreen</p>
-                <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                <p className="text-sm text-gray-600 dark:text-gray-300 mt-1 dark:text-slate-400">
                   Tab switching, copy/paste and right-click are restricted. Violations may auto-submit the exam.
                 </p>
                 <div className="mt-4 flex gap-3">
@@ -556,7 +556,7 @@ const Exam = () => {
 
             <div className="space-y-4">
               {(activeExam.questions || []).map((q, idx) => (
-                <div key={q._id} className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900">
+                <div key={q._id} className="p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 dark:border-slate-800">
                   <p className="font-medium">
                     {idx + 1}. {q.questionText}
                   </p>
@@ -612,7 +612,7 @@ const Exam = () => {
         </div>
 
         <div className="mt-6 w-full">
-          <table className="text-sm min-w-full bg-white dark:bg-gray-900 rounded-lg overflow-hidden">
+          <table className="text-sm min-w-full bg-white dark:bg-slate-900/50 dark:text-slate-200 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800">
             <thead>
               <tr className="bg-blue-500 text-white">
                 <th className="py-3 px-4 text-left font-semibold">Title</th>
@@ -695,7 +695,7 @@ const Exam = () => {
                     type="text"
                     value={createData.title}
                     onChange={(e) => setCreateData((p) => ({ ...p, title: e.target.value }))}
-                    className="w-full px-4 py-2 border rounded-md dark:bg-gray-800"
+                    className="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-slate-800 dark:text-slate-200"
                   />
                 </div>
 
@@ -708,7 +708,7 @@ const Exam = () => {
                       onChange={(e) =>
                         setCreateData((p) => ({ ...p, weekStartDate: e.target.value }))
                       }
-                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800"
+                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-slate-800 dark:text-slate-200"
                     />
                   </div>
                   <div>
@@ -719,7 +719,7 @@ const Exam = () => {
                       onChange={(e) =>
                         setCreateData((p) => ({ ...p, durationMinutes: e.target.value }))
                       }
-                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800"
+                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-slate-800 dark:text-slate-200"
                       min={1}
                     />
                   </div>
@@ -731,7 +731,7 @@ const Exam = () => {
                     <select
                       value={createData.branchId}
                       onChange={(e) => setCreateData((p) => ({ ...p, branchId: e.target.value }))}
-                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800"
+                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-slate-800 dark:text-slate-200"
                     >
                       <option value="">Select Branch</option>
                       {branches.map((b) => (
@@ -746,7 +746,7 @@ const Exam = () => {
                     <select
                       value={createData.semester}
                       onChange={(e) => setCreateData((p) => ({ ...p, semester: e.target.value }))}
-                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800"
+                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-slate-800 dark:text-slate-200"
                     >
                       <option value="">Select Semester</option>
                       {[1, 2, 3, 4, 5, 6, 7, 8].map((s) => (
@@ -787,7 +787,7 @@ const Exam = () => {
                   <textarea
                     value={questionData.questionText}
                     onChange={(e) => setQuestionData((p) => ({ ...p, questionText: e.target.value }))}
-                    className="w-full px-4 py-2 border rounded-md dark:bg-gray-800"
+                    className="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-slate-800 dark:text-slate-200"
                     rows={3}
                   />
                 </div>
@@ -799,7 +799,7 @@ const Exam = () => {
                       type="text"
                       value={questionData.option1}
                       onChange={(e) => setQuestionData((p) => ({ ...p, option1: e.target.value }))}
-                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800"
+                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-slate-800 dark:text-slate-200"
                     />
                   </div>
                   <div>
@@ -808,7 +808,7 @@ const Exam = () => {
                       type="text"
                       value={questionData.option2}
                       onChange={(e) => setQuestionData((p) => ({ ...p, option2: e.target.value }))}
-                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800"
+                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-slate-800 dark:text-slate-200"
                     />
                   </div>
                 </div>
@@ -819,7 +819,7 @@ const Exam = () => {
                       type="text"
                       value={questionData.option3}
                       onChange={(e) => setQuestionData((p) => ({ ...p, option3: e.target.value }))}
-                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800"
+                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-slate-800 dark:text-slate-200"
                     />
                   </div>
                   <div>
@@ -828,7 +828,7 @@ const Exam = () => {
                       type="text"
                       value={questionData.option4}
                       onChange={(e) => setQuestionData((p) => ({ ...p, option4: e.target.value }))}
-                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800"
+                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-slate-800 dark:text-slate-200"
                     />
                   </div>
                 </div>
@@ -841,7 +841,7 @@ const Exam = () => {
                       onChange={(e) =>
                         setQuestionData((p) => ({ ...p, correctOptionIndex: Number(e.target.value) }))
                       }
-                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800"
+                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-slate-800 dark:text-slate-200"
                     >
                       {[0, 1, 2, 3].map((i) => (
                         <option key={i} value={i}>
@@ -856,7 +856,7 @@ const Exam = () => {
                       type="number"
                       value={questionData.marks}
                       onChange={(e) => setQuestionData((p) => ({ ...p, marks: e.target.value }))}
-                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800"
+                      className="w-full px-4 py-2 border rounded-md dark:bg-gray-800 dark:border-slate-800 dark:text-slate-200"
                       min={1}
                     />
                   </div>
@@ -893,7 +893,7 @@ const Exam = () => {
 
               <div className="mb-4">
                 <p className="font-medium">{resultsData?.exam?.title}</p>
-                <p className="text-sm text-gray-600 dark:text-gray-300">
+                <p className="text-sm text-gray-600 dark:text-gray-300 dark:text-slate-400">
                   Week Start:{" "}
                   {resultsData?.exam?.weekStartDate
                     ? new Date(resultsData.exam.weekStartDate).toLocaleDateString()
@@ -902,7 +902,7 @@ const Exam = () => {
               </div>
 
               <div className="w-full overflow-auto">
-                <table className="text-sm min-w-full bg-white dark:bg-gray-900 rounded-lg overflow-hidden">
+                <table className="text-sm min-w-full bg-white dark:bg-slate-900/50 dark:text-slate-200 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-800">
                   <thead>
                     <tr className="bg-blue-500 text-white">
                       <th className="py-3 px-4 text-left font-semibold">Enrollment</th>
@@ -958,7 +958,7 @@ const Exam = () => {
   return (
     <div className="section-exam w-full mx-auto mt-6">
       <Heading title="Weekly Exams" />
-      <p className="mt-4 text-sm text-gray-600 dark:text-gray-300">
+      <p className="mt-4 text-sm text-gray-600 dark:text-gray-300 dark:text-slate-400">
         This section is available for Faculty and Students.
       </p>
     </div>

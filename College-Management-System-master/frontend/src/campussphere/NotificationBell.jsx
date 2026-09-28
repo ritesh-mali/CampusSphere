@@ -97,7 +97,7 @@ const NotificationBell = () => {
           setOpen((o) => !o);
           if (!open) refresh();
         }}
-        className="relative p-2 rounded-lg border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800"
+        className="relative p-2 rounded-lg border border-gray-200 dark:border-gray-600 text-gray-800 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-800 dark:border-slate-800 dark:text-slate-100"
       >
         <FiBell className="text-xl" />
         {unread > 0 && (
@@ -115,7 +115,7 @@ const NotificationBell = () => {
             aria-label="Close"
             onClick={() => setOpen(false)}
           />
-          <div className="absolute right-0 mt-2 w-80 max-h-[70vh] overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-xl z-50 flex flex-col">
+          <div className="absolute right-0 mt-2 w-80 max-h-[70vh] overflow-hidden rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 shadow-xl z-50 flex flex-col dark:border-slate-800">
             <div className="flex justify-between items-center px-3 py-2 border-b border-gray-100 dark:border-gray-800">
               <span className="font-semibold text-sm text-gray-900 dark:text-white">
                 Notifications
@@ -128,13 +128,13 @@ const NotificationBell = () => {
                 Mark all read
               </button>
             </div>
-            <label className="flex items-center gap-2 px-3 py-2 text-xs border-b border-gray-100 dark:border-gray-800 cursor-pointer text-gray-700 dark:text-gray-300">
+            <label className="flex items-center gap-2 px-3 py-2 text-xs border-b border-gray-100 dark:border-gray-800 cursor-pointer text-gray-700 dark:text-gray-300 dark:text-slate-300">
               <input type="checkbox" checked={emailOptIn} onChange={toggleEmail} />
               Email alerts (optional — server must set CAMPUS_NOTIFICATION_EMAILS=true)
             </label>
             <ul className="overflow-y-auto flex-1 text-sm">
               {items.length === 0 ? (
-                <li className="p-4 text-gray-500 text-center">No notifications yet</li>
+                <li className="p-4 text-gray-500 text-center dark:text-slate-400">No notifications yet</li>
               ) : (
                 items.map((n) => (
                   <li
@@ -144,8 +144,8 @@ const NotificationBell = () => {
                     }`}
                     onClick={() => n.status === "unread" && onRead(n.id)}
                   >
-                    <p className="text-gray-900 dark:text-gray-100">{n.message}</p>
-                    <p className="text-[10px] text-gray-500 mt-1">
+                    <p className="text-gray-900 dark:text-gray-100 dark:text-white">{n.message}</p>
+                    <p className="text-[10px] text-gray-500 mt-1 dark:text-slate-400">
                       {n.type} · {new Date(n.created_at).toLocaleString()}
                     </p>
                   </li>

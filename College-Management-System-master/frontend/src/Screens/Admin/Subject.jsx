@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { toast } from "react-hot-toast";
 import { MdOutlineDelete, MdEdit } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
@@ -215,11 +216,11 @@ const Subject = () => {
       {!dataLoading && branch.length > 0 && (
         <div className="mt-8 w-full">
           {subject.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-gray-500 dark:text-slate-400">
               No subjects found
             </div>
           ) : (
-            <table className="text-sm min-w-full bg-white">
+            <table className="text-sm min-w-full bg-white dark:bg-slate-900/50 dark:text-slate-200">
               <thead>
                 <tr className="bg-blue-500 text-white">
                   <th className="py-4 px-6 text-left font-semibold">Name</th>
@@ -237,7 +238,7 @@ const Subject = () => {
               <tbody>
                 {subject &&
                   subject.map((item, index) => (
-                    <tr key={index} className="border-b hover:bg-blue-50">
+                    <tr key={index} className="border-b dark:border-slate-800 hover:bg-blue-50 dark:hover:bg-slate-800/50">
                       <td className="py-4 px-6">{item.name}</td>
                       <td className="py-4 px-6">{item.code}</td>
                       <td className="py-4 px-6">{item.branch?.name}</td>
@@ -268,9 +269,9 @@ const Subject = () => {
       )}
 
       {/* Add/Edit Subject Modal */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-          <div className="bg-white rounded-lg p-6 max-w-2xl w-full">
+      {showModal && createPortal(
+        <div className="fixed inset-0 z-[9999] bg-black bg-opacity-50 flex items-center justify-center p-4">
+          <div className="bg-white dark:bg-slate-900 dark:text-white rounded-lg p-6 max-w-2xl w-full">
             <div className="flex justify-between items-center mb-4">
               <h2 className="text-xl font-semibold">
                 {isEditing ? "Edit Subject" : "Add New Subject"}
@@ -282,39 +283,39 @@ const Subject = () => {
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                   Subject Name
                 </label>
                 <input
                   type="text"
                   value={data.name}
                   onChange={(e) => setData({ ...data, name: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                   Subject Code
                 </label>
                 <input
                   type="text"
                   value={data.code}
                   onChange={(e) => setData({ ...data, code: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                   required
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                   Branch
                 </label>
                 <select
                   value={data.branch}
                   onChange={(e) => setData({ ...data, branch: e.target.value })}
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                   required
                 >
                   <option value="">Select Branch</option>
@@ -327,7 +328,7 @@ const Subject = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                   Semester
                 </label>
                 <select
@@ -335,7 +336,7 @@ const Subject = () => {
                   onChange={(e) =>
                     setData({ ...data, semester: e.target.value })
                   }
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                   required
                 >
                   <option value="">Select Semester</option>
@@ -348,7 +349,7 @@ const Subject = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
+                <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                   Credits
                 </label>
                 <input
@@ -357,7 +358,7 @@ const Subject = () => {
                   onChange={(e) =>
                     setData({ ...data, credits: e.target.value })
                   }
-                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                   required
                 />
               </div>
@@ -375,7 +376,8 @@ const Subject = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       <DeleteConfirm

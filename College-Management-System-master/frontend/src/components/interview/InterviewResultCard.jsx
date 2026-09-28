@@ -8,9 +8,9 @@ const scoreBadgeClass = (score) => {
 
 const InterviewResultCard = ({ item, index }) => {
   return (
-    <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+    <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm dark:border-slate-800">
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <h3 className="font-semibold text-gray-800">Q{index + 1}</h3>
+        <h3 className="font-semibold text-gray-800 dark:text-slate-100">Q{index + 1}</h3>
         <span
           className={`px-2.5 py-1 rounded-full text-xs font-semibold ${scoreBadgeClass(
             item.analysis.score
@@ -20,24 +20,24 @@ const InterviewResultCard = ({ item, index }) => {
         </span>
       </div>
 
-      <p className="mt-3 text-sm text-gray-700">
+      <p className="mt-3 text-sm text-gray-700 dark:text-slate-300">
         <span className="font-semibold">Question:</span> {item.question}
       </p>
-      <p className="mt-2 text-sm text-gray-700">
+      <p className="mt-2 text-sm text-gray-700 dark:text-slate-300">
         <span className="font-semibold">Your answer:</span> {item.answer}
       </p>
-      <p className="mt-2 text-sm text-gray-700">
+      <p className="mt-2 text-sm text-gray-700 dark:text-slate-300">
         <span className="font-semibold">Feedback:</span> {item.analysis.feedback}
       </p>
 
-      <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-gray-700">
-        <div className="rounded-md bg-gray-100 px-2 py-1">
+      <div className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-gray-700 dark:text-slate-300">
+        <div className="rounded-md bg-gray-100 px-2 py-1 dark:bg-slate-900/40">
           Grammar: {item.analysis.grammar}
         </div>
-        <div className="rounded-md bg-gray-100 px-2 py-1">
+        <div className="rounded-md bg-gray-100 px-2 py-1 dark:bg-slate-900/40">
           Relevance: {item.analysis.relevance}
         </div>
-        <div className="rounded-md bg-gray-100 px-2 py-1">
+        <div className="rounded-md bg-gray-100 px-2 py-1 dark:bg-slate-900/40">
           Confidence: {item.analysis.confidence}
         </div>
       </div>
@@ -45,7 +45,7 @@ const InterviewResultCard = ({ item, index }) => {
       {item.analysis.tips?.length > 0 && (
         <ul className="mt-3 space-y-1">
           {item.analysis.tips.map((tip, tipIndex) => (
-            <li key={`${index}-tip-${tipIndex}`} className="text-sm text-gray-600">
+            <li key={`${index}-tip-${tipIndex}`} className="text-sm text-gray-600 dark:text-slate-400">
               - {tip}
             </li>
           ))}

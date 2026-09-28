@@ -2,7 +2,7 @@
 
 /* Shell: main content canvas */
 .dash-root .dash-main-surface {
-  animation: cms-section-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation: pageEnter 0.6s var(--spring-bounce) both;
   position: relative;
   isolation: isolate;
 }
@@ -33,11 +33,13 @@
 .dash-root.dash-theme-student .rounded-2xl.border,
 .dash-root.dash-theme-faculty .rounded-2xl.border,
 .dash-root.dash-theme-admin .rounded-2xl.border {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.4s var(--spring-bounce), box-shadow 0.4s ease, border-color 0.4s ease;
 }
 
 .dash-root.dash-theme-student aside .rounded-2xl:hover,
 .dash-root.dash-theme-faculty aside .rounded-2xl:hover,
 .dash-root.dash-theme-admin aside .rounded-2xl:hover {
-  transform: translateY(-1px);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 30px var(--primary-glow);
+  border-color: var(--primary);
 }

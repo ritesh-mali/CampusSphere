@@ -104,8 +104,8 @@ const FacultyAttendancePanel = () => {
   };
 
   return (
-    <div className="section-attendance-faculty rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4 sm:p-6 shadow-sm">
-      <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+    <div className="section-attendance-faculty rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4 sm:p-6 shadow-sm dark:border-slate-800">
+      <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4 dark:text-white">
         Mark Attendance
       </h3>
 
@@ -113,7 +113,7 @@ const FacultyAttendancePanel = () => {
         <select
           value={semester}
           onChange={(e) => setSemester(e.target.value)}
-          className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-2 text-sm"
+          className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-2 text-sm dark:border-slate-700 dark:text-white"
         >
           <option value="">Select Semester</option>
           {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
@@ -126,7 +126,7 @@ const FacultyAttendancePanel = () => {
         <select
           value={subjectId}
           onChange={(e) => setSubjectId(e.target.value)}
-          className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-2 text-sm"
+          className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-2 text-sm dark:border-slate-700 dark:text-white"
         >
           <option value="">Select Subject</option>
           {subjects.map((subject) => (
@@ -140,14 +140,14 @@ const FacultyAttendancePanel = () => {
           type="date"
           value={date}
           onChange={(e) => setDate(e.target.value)}
-          className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-2 text-sm"
+          className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-2 text-sm dark:border-slate-700 dark:text-white"
         />
       </div>
 
       <div className="overflow-x-auto">
         <table className="min-w-full text-sm">
           <thead>
-            <tr className="text-left border-b border-gray-200 dark:border-gray-700">
+            <tr className="text-left border-b border-gray-200 dark:border-gray-700 dark:border-slate-800">
               <th className="py-2 pr-3">Enrollment</th>
               <th className="py-2 pr-3">Student</th>
               <th className="py-2 pr-3">Attendance %</th>
@@ -162,16 +162,16 @@ const FacultyAttendancePanel = () => {
                   key={student._id}
                   className="border-b border-gray-100 dark:border-gray-800"
                 >
-                  <td className="py-2 pr-3 text-gray-700 dark:text-gray-300">
+                  <td className="py-2 pr-3 text-gray-700 dark:text-gray-300 dark:text-slate-300">
                     {student.enrollmentNo}
                   </td>
-                  <td className="py-2 pr-3 text-gray-700 dark:text-gray-300">
+                  <td className="py-2 pr-3 text-gray-700 dark:text-gray-300 dark:text-slate-300">
                     {student.firstName} {student.middleName} {student.lastName}
                   </td>
-                  <td className="py-2 pr-3 text-gray-700 dark:text-gray-300">
+                  <td className="py-2 pr-3 text-gray-700 dark:text-gray-300 dark:text-slate-300">
                     {summaryMap[student._id]?.percentage ?? 0}%
                   </td>
-                  <td className="py-2 pr-3 text-gray-700 dark:text-gray-300">
+                  <td className="py-2 pr-3 text-gray-700 dark:text-gray-300 dark:text-slate-300">
                     {(summaryMap[student._id]?.presentClasses ?? 0) +
                       "/" +
                       (summaryMap[student._id]?.totalClasses ?? 0)}
@@ -185,7 +185,7 @@ const FacultyAttendancePanel = () => {
                           [student._id]: e.target.value,
                         }))
                       }
-                      className="rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-2 py-1 text-xs"
+                      className="rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-2 py-1 text-xs dark:border-slate-700 dark:text-white"
                     >
                       <option value="present">Present</option>
                       <option value="absent">Absent</option>
@@ -195,7 +195,7 @@ const FacultyAttendancePanel = () => {
               ))
             ) : (
               <tr>
-                <td colSpan={5} className="py-4 text-gray-600 dark:text-gray-300">
+                <td colSpan={5} className="py-4 text-gray-600 dark:text-gray-300 dark:text-slate-400">
                   No students loaded.
                 </td>
               </tr>

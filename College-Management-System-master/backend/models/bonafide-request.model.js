@@ -21,8 +21,8 @@ const bonafideRequestSchema = new mongoose.Schema(
     },
     requestStatus: {
       type: String,
-      enum: ["pending", "approved", "rejected"],
-      default: "pending",
+      enum: ["Pending", "Approved", "Rejected"],
+      default: "Pending",
     },
     razorpayOrderId: { type: String, required: true },
     razorpayPaymentId: { type: String, required: true },

@@ -141,12 +141,12 @@ const MockInterviewPage = () => {
       <Navbar />
       <div className="max-w-5xl mx-auto px-3 sm:px-6 pb-10">
         <div className="flex items-center justify-between gap-3 mt-2 mb-4">
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-slate-100">
             AI Mock Interview
           </h1>
           <button
             onClick={() => navigate("/student")}
-            className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors"
+            className="inline-flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition-colors dark:border-slate-700 dark:text-slate-300"
           >
             <FiArrowLeft />
             Back
@@ -155,7 +155,7 @@ const MockInterviewPage = () => {
 
         {!hasInterviewStarted && (
           <div className="rounded-2xl border border-blue-100 bg-white p-6 sm:p-8 shadow-sm">
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-6 dark:text-slate-400">
               Start a personalized interview. You will get technical + HR
               questions, answer them, and receive AI-based score and feedback.
             </p>
@@ -170,7 +170,7 @@ const MockInterviewPage = () => {
         )}
 
         {hasInterviewStarted && !result && (
-          <div className="rounded-2xl border border-gray-200 bg-white p-5 sm:p-7 shadow-sm space-y-4">
+          <div className="rounded-2xl border border-gray-200 bg-white p-5 sm:p-7 shadow-sm space-y-4 dark:border-slate-800">
             <div className="flex items-center justify-between gap-3">
               <p className="text-sm font-medium text-blue-700">
                 Question {activeIndex + 1} of {questions.length}
@@ -188,7 +188,7 @@ const MockInterviewPage = () => {
               </button>
             </div>
 
-            <p className="text-lg font-semibold text-gray-800">
+            <p className="text-lg font-semibold text-gray-800 dark:text-slate-100">
               {questions[activeIndex]}
             </p>
 
@@ -197,14 +197,14 @@ const MockInterviewPage = () => {
               value={answersMap[activeIndex] || ""}
               onChange={(e) => handleAnswerChange(e.target.value)}
               placeholder="Write your answer..."
-              className="w-full rounded-xl border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-xl border border-gray-300 p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-700"
             />
 
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={handlePrevious}
                 disabled={activeIndex === 0}
-                className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 disabled:opacity-50"
+                className="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 disabled:opacity-50 dark:border-slate-700 dark:text-slate-300"
               >
                 Previous
               </button>
@@ -230,15 +230,15 @@ const MockInterviewPage = () => {
 
         {result && (
           <div className="space-y-4">
-            <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-              <h2 className="text-xl font-bold text-gray-800">
+            <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm dark:border-slate-800">
+              <h2 className="text-xl font-bold text-gray-800 dark:text-slate-100">
                 Overall Score: {result.score}/100
               </h2>
-              <p className="mt-2 text-gray-700">{result.feedback}</p>
+              <p className="mt-2 text-gray-700 dark:text-slate-300">{result.feedback}</p>
               {result.improvementTips?.length > 0 && (
                 <ul className="mt-3 space-y-1">
                   {result.improvementTips.map((tip, index) => (
-                    <li key={`overall-tip-${index}`} className="text-sm text-gray-600">
+                    <li key={`overall-tip-${index}`} className="text-sm text-gray-600 dark:text-slate-400">
                       - {tip}
                     </li>
                   ))}

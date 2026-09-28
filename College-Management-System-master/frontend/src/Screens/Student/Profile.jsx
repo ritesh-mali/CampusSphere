@@ -60,103 +60,103 @@ const Profile = ({ profileData }) => {
       <div className="grid grid-cols-1 gap-12">
         {/* Personal Information */}
         <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 p-6 transition-all duration-300 hover:-translate-y-0.5">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 pb-2 border-b border-gray-200 dark:border-gray-700 dark:text-white dark:border-slate-800">
             Personal Information
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div>
-              <label className="text-sm font-medium text-gray-500 dark:text-gray-400">Email</label>
-              <p className="text-gray-900 dark:text-gray-100">{profileData.email}</p>
+              <label className="text-sm font-medium text-gray-500 dark:text-gray-400 dark:text-slate-400">Email</label>
+              <p className="text-gray-900 dark:text-gray-100 dark:text-white">{profileData.email}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500 dark:text-gray-400">Phone</label>
-              <p className="text-gray-900 dark:text-gray-100">{profileData.phone}</p>
+              <label className="text-sm font-medium text-gray-500 dark:text-gray-400 dark:text-slate-400">Phone</label>
+              <p className="text-gray-900 dark:text-gray-100 dark:text-white">{profileData.phone}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500 dark:text-gray-400">
+              <label className="text-sm font-medium text-gray-500 dark:text-gray-400 dark:text-slate-400">
                 Gender
               </label>
-              <p className="text-gray-900 dark:text-gray-100 capitalize">{profileData.gender}</p>
+              <p className="text-gray-900 dark:text-gray-100 capitalize dark:text-white">{profileData.gender}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500 dark:text-gray-400">
+              <label className="text-sm font-medium text-gray-500 dark:text-gray-400 dark:text-slate-400">
                 Blood Group
               </label>
-              <p className="text-gray-900 dark:text-gray-100">{profileData.bloodGroup}</p>
+              <p className="text-gray-900 dark:text-gray-100 dark:text-white">{profileData.bloodGroup}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500 dark:text-gray-400">
+              <label className="text-sm font-medium text-gray-500 dark:text-gray-400 dark:text-slate-400">
                 Date of Birth
               </label>
-              <p className="text-gray-900 dark:text-gray-100">{formatDate(profileData.dob)}</p>
+              <p className="text-gray-900 dark:text-gray-100 dark:text-white">{formatDate(profileData.dob)}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500 dark:text-gray-400">
+              <label className="text-sm font-medium text-gray-500 dark:text-gray-400 dark:text-slate-400">
                 Semester
               </label>
-              <p className="text-gray-900 dark:text-gray-100">{profileData.semester}</p>
+              <p className="text-gray-900 dark:text-gray-100 dark:text-white">{profileData.semester}</p>
             </div>
           </div>
         </div>
 
         {/* Address Information */}
         <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 p-6 transition-all duration-300 hover:-translate-y-0.5">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 pb-2 border-b border-gray-200 dark:border-gray-700 dark:text-white dark:border-slate-800">
             Address Information
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div>
-              <label className="text-sm font-medium text-gray-500 dark:text-gray-400">
+              <label className="text-sm font-medium text-gray-500 dark:text-gray-400 dark:text-slate-400">
                 Address
               </label>
-              <p className="text-gray-900 dark:text-gray-100">{profileData.address}</p>
+              <p className="text-gray-900 dark:text-gray-100 dark:text-white">{profileData.address}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500 dark:text-gray-400">City</label>
-              <p className="text-gray-900 dark:text-gray-100">{profileData.city}</p>
+              <label className="text-sm font-medium text-gray-500 dark:text-gray-400 dark:text-slate-400">City</label>
+              <p className="text-gray-900 dark:text-gray-100 dark:text-white">{profileData.city}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500 dark:text-gray-400">State</label>
-              <p className="text-gray-900 dark:text-gray-100">{profileData.state}</p>
+              <label className="text-sm font-medium text-gray-500 dark:text-gray-400 dark:text-slate-400">State</label>
+              <p className="text-gray-900 dark:text-gray-100 dark:text-white">{profileData.state}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500 dark:text-gray-400">
+              <label className="text-sm font-medium text-gray-500 dark:text-gray-400 dark:text-slate-400">
                 Pincode
               </label>
-              <p className="text-gray-900 dark:text-gray-100">{profileData.pincode}</p>
+              <p className="text-gray-900 dark:text-gray-100 dark:text-white">{profileData.pincode}</p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500 dark:text-gray-400">
+              <label className="text-sm font-medium text-gray-500 dark:text-gray-400 dark:text-slate-400">
                 Country
               </label>
-              <p className="text-gray-900 dark:text-gray-100">{profileData.country}</p>
+              <p className="text-gray-900 dark:text-gray-100 dark:text-white">{profileData.country}</p>
             </div>
           </div>
         </div>
 
         {/* Emergency Contact */}
         <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-800 p-6 transition-all duration-300 hover:-translate-y-0.5">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 pb-2 border-b border-gray-200 dark:border-gray-700">
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-6 pb-2 border-b border-gray-200 dark:border-gray-700 dark:text-white dark:border-slate-800">
             Emergency Contact
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div>
-              <label className="text-sm font-medium text-gray-500 dark:text-gray-400">Name</label>
-              <p className="text-gray-900 dark:text-gray-100">
+              <label className="text-sm font-medium text-gray-500 dark:text-gray-400 dark:text-slate-400">Name</label>
+              <p className="text-gray-900 dark:text-gray-100 dark:text-white">
                 {profileData.emergencyContact.name}
               </p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500 dark:text-gray-400">
+              <label className="text-sm font-medium text-gray-500 dark:text-gray-400 dark:text-slate-400">
                 Relationship
               </label>
-              <p className="text-gray-900 dark:text-gray-100">
+              <p className="text-gray-900 dark:text-gray-100 dark:text-white">
                 {profileData.emergencyContact.relationship}
               </p>
             </div>
             <div>
-              <label className="text-sm font-medium text-gray-500 dark:text-gray-400">Phone</label>
-              <p className="text-gray-900 dark:text-gray-100">
+              <label className="text-sm font-medium text-gray-500 dark:text-gray-400 dark:text-slate-400">Phone</label>
+              <p className="text-gray-900 dark:text-gray-100 dark:text-white">
                 {profileData.emergencyContact.phone}
               </p>
             </div>

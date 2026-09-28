@@ -2,17 +2,6 @@ import React, { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import axiosWrapper from "../../utils/AxiosWrapper";
 import "../../styles/sections/section-bonafide.css";
-
-const loadRazorpayScript = () =>
-  new Promise((resolve) => {
-    if (window.Razorpay) return resolve(true);
-    const script = document.createElement("script");
-    script.src = "https://checkout.razorpay.com/v1/checkout.js";
-    script.onload = () => resolve(true);
-    script.onerror = () => resolve(false);
-    document.body.appendChild(script);
-  });
-
 const BonafidePanel = () => {
   const [form, setForm] = useState({
     fullName: "",
@@ -21,33 +10,75 @@ const BonafidePanel = () => {
     semester: "",
     reason: "",
   });
-  const [config, setConfig] = useState({ keyId: "", amount: 10 });
+  const [config, setConfig] = useState({ keyId: "rzp_test_dummy", amount: 10 });
   const [requests, setRequests] = useState([]);
   const [isPaying, setIsPaying] = useState(false);
+  const [studentProfile, setStudentProfile] = useState(null);
 
-  const tokenHeader = useMemo(
-    () => ({ Authorization: `Bearer ${localStorage.getItem("userToken")}` }),
-    []
-  );
-
-  const fetchData = async () => {
+  const fetchConfig = async () => {
     try {
-      const [configRes, requestRes] = await Promise.all([
-        axiosWrapper.get("/bonafide/config", { headers: tokenHeader }),
-        axiosWrapper.get("/bonafide/my", { headers: tokenHeader }),
-      ]);
-      setConfig(configRes?.data?.data || { keyId: "", amount: 10 });
-      setRequests(requestRes?.data?.data || []);
+      const token = localStorage.getItem("userToken");
+      const response = await axiosWrapper.get("/bonafide/config", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (response.data.success) {
+        setConfig(response.data.data);
+      }
     } catch (error) {
-      toast.error("Failed to load bonafide details");
+      console.log("Error fetching bonafide config", error);
+    }
+  };
+
+  const fetchProfileAndRequests = async () => {
+    let currentRollNumber = "";
+    try {
+      const token = localStorage.getItem("userToken");
+      const response = await axiosWrapper.get("/student/my-details", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (response.data.success) {
+        const profile = response.data.data;
+        setStudentProfile(profile);
+        setForm((prev) => ({
+          ...prev,
+          fullName: `${profile.firstName} ${profile.lastName}`,
+          rollNumber: profile.enrollmentNo || "",
+        }));
+        currentRollNumber = profile.enrollmentNo || "";
+      }
+    } catch (error) {
+      console.log("Not logged in as student or profile API failed. Using manual input.");
+    }
+
+    try {
+      const token = localStorage.getItem("userToken");
+      const requestsRes = await axiosWrapper.get("/bonafide/my", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (requestsRes.data.success) {
+        setRequests(requestsRes.data.data);
+      }
+    } catch (error) {
+      console.error("Error fetching my requests", error);
+      setRequests([]);
     }
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchConfig();
+    fetchProfileAndRequests();
+    
+    // Listen to storage events to auto-refresh when admin modifies status
+    const handleStorageChange = (e) => {
+      if (e.key === "cms_bonafide_sync") {
+        fetchProfileAndRequests();
+      }
+    };
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, [studentProfile?.enrollmentNo]);
 
-  const payAndRequest = async () => {
+  const submitRequest = async () => {
     if (
       !form.fullName.trim() ||
       !form.rollNumber.trim() ||
@@ -59,78 +90,54 @@ const BonafidePanel = () => {
       return;
     }
 
-    const scriptLoaded = await loadRazorpayScript();
-    if (!scriptLoaded) {
-      toast.error("Razorpay SDK failed to load");
-      return;
-    }
-
     try {
       setIsPaying(true);
-      const orderResponse = await axiosWrapper.post(
-        "/bonafide/create-order",
-        {},
-        { headers: tokenHeader }
-      );
-      const { orderId, amountPaise, currency } = orderResponse?.data?.data || {};
+      toast.loading("Submitting request...");
 
-      const options = {
-        key: config.keyId,
-        amount: amountPaise,
-        currency: currency || "INR",
-        name: "College Management System",
-        description: "Bonafide Certificate Fee",
-        order_id: orderId,
-        handler: async function (response) {
-          try {
-            await axiosWrapper.post(
-              "/bonafide/verify-payment",
-              {
-                fullName: form.fullName,
-                rollNumber: form.rollNumber,
-                year: form.year,
-                semester: Number(form.semester),
-                reason: form.reason,
-                razorpay_order_id: response.razorpay_order_id,
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_signature: response.razorpay_signature,
-              },
-              { headers: tokenHeader }
-            );
-            toast.success("Bonafide request submitted successfully");
-            setForm({
-              fullName: "",
-              rollNumber: "",
-              year: "",
-              semester: "",
-              reason: "",
-            });
-            fetchData();
-          } catch (error) {
-            toast.error(
-              error?.response?.data?.message || "Payment verification failed"
-            );
-          }
+      const token = localStorage.getItem("userToken");
+      const res = await axiosWrapper.post(
+        "/bonafide/verify-payment",
+        {
+          fullName: form.fullName.trim(),
+          rollNumber: form.rollNumber.trim(),
+          year: form.year.trim(),
+          semester: Number(form.semester),
+          reason: form.reason.trim(),
         },
-        theme: { color: "#2563eb" },
-      };
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
 
-      const paymentObject = new window.Razorpay(options);
-      paymentObject.open();
+      if (res.data.success) {
+        toast.success("Request Submitted Successfully!");
+        setForm((prev) => ({
+          ...prev,
+          year: "",
+          semester: "",
+          reason: "",
+        }));
+        fetchProfileAndRequests();
+        
+        // Notify other tabs/views for cross-tab sync
+        localStorage.setItem("cms_bonafide_sync", Date.now().toString());
+        window.dispatchEvent(new Event("storage"));
+      } else {
+        toast.error(res.data.message || "Failed to submit request");
+      }
     } catch (error) {
-      toast.error(error?.response?.data?.message || "Failed to create order");
+      toast.error(error.message || "Submission failed. Please try again.");
     } finally {
       setIsPaying(false);
+      toast.dismiss();
     }
   };
 
   return (
-    <div className="section-bonafide rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4 sm:p-6 shadow-sm">
-      <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3">
+    <div className="section-bonafide rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4 sm:p-6 shadow-sm dark:border-slate-800">
+      <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-3 dark:text-white">
         Bonafide Certificate
       </h3>
-      <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
-        Bonafide fee: INR {config.amount}. Payment is required per request.
+      <p className="text-sm text-gray-600 dark:text-gray-300 mb-4 dark:text-slate-400">
+        Fill out the details below to submit a new bonafide certificate request.
       </p>
 
       <div className="space-y-3">
@@ -139,7 +146,7 @@ const BonafidePanel = () => {
             value={form.fullName}
             onChange={(e) => setForm((prev) => ({ ...prev, fullName: e.target.value }))}
             placeholder="Full Name"
-            className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-3 text-sm"
+            className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-3 text-sm dark:border-slate-700 dark:text-white"
           />
           <input
             value={form.rollNumber}
@@ -147,20 +154,20 @@ const BonafidePanel = () => {
               setForm((prev) => ({ ...prev, rollNumber: e.target.value }))
             }
             placeholder="Roll Number"
-            className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-3 text-sm"
+            className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-3 text-sm dark:border-slate-700 dark:text-white"
           />
           <input
             value={form.year}
             onChange={(e) => setForm((prev) => ({ ...prev, year: e.target.value }))}
             placeholder="Year (e.g. 2nd Year)"
-            className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-3 text-sm"
+            className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-3 text-sm dark:border-slate-700 dark:text-white"
           />
           <select
             value={form.semester}
             onChange={(e) =>
               setForm((prev) => ({ ...prev, semester: e.target.value }))
             }
-            className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-3 text-sm"
+            className="rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-3 text-sm dark:border-slate-700 dark:text-white"
           >
             <option value="">Select Semester</option>
             {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
@@ -175,25 +182,25 @@ const BonafidePanel = () => {
           value={form.reason}
           onChange={(e) => setForm((prev) => ({ ...prev, reason: e.target.value }))}
           placeholder="Reason for bonafide"
-          className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-3 text-sm"
+          className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 p-3 text-sm dark:border-slate-700 dark:text-white"
         />
         <button
-          onClick={payAndRequest}
+          onClick={submitRequest}
           disabled={isPaying}
           className="rounded-lg bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 text-sm font-semibold disabled:opacity-60"
         >
-          {isPaying ? "Processing..." : "Pay INR 10 and Request Bonafide"}
+          {isPaying ? "Submitting..." : "Submit Bonafide Request"}
         </button>
       </div>
 
       <div className="mt-6">
-        <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">
+        <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-2 dark:text-white">
           My Requests
         </h4>
         <div className="overflow-x-auto">
           <table className="min-w-full text-sm">
             <thead>
-              <tr className="text-left border-b border-gray-200 dark:border-gray-700">
+              <tr className="text-left border-b border-gray-200 dark:border-gray-700 dark:border-slate-800">
                 <th className="py-2 pr-3">Date</th>
                 <th className="py-2 pr-3">Name</th>
                 <th className="py-2 pr-3">Roll No</th>
@@ -211,37 +218,45 @@ const BonafidePanel = () => {
                     key={item._id}
                     className="border-b border-gray-100 dark:border-gray-800"
                   >
-                    <td className="py-2 pr-3 text-gray-700 dark:text-gray-300">
+                    <td className="py-2 pr-3 text-gray-700 dark:text-gray-300 dark:text-slate-300">
                       {new Date(item.createdAt).toLocaleDateString()}
                     </td>
-                    <td className="py-2 pr-3 text-gray-700 dark:text-gray-300">
+                    <td className="py-2 pr-3 text-gray-700 dark:text-gray-300 dark:text-slate-300">
                       {item.fullName}
                     </td>
-                    <td className="py-2 pr-3 text-gray-700 dark:text-gray-300">
+                    <td className="py-2 pr-3 text-gray-700 dark:text-gray-300 dark:text-slate-300">
                       {item.rollNumber}
                     </td>
-                    <td className="py-2 pr-3 text-gray-700 dark:text-gray-300">
+                    <td className="py-2 pr-3 text-gray-700 dark:text-gray-300 dark:text-slate-300">
                       {item.year}
                     </td>
-                    <td className="py-2 pr-3 text-gray-700 dark:text-gray-300">
+                    <td className="py-2 pr-3 text-gray-700 dark:text-gray-300 dark:text-slate-300">
                       {item.semester}
                     </td>
-                    <td className="py-2 pr-3 text-gray-700 dark:text-gray-300">
+                    <td className="py-2 pr-3 text-gray-700 dark:text-gray-300 dark:text-slate-300">
                       {item.reason}
                     </td>
-                    <td className="py-2 pr-3 text-gray-700 dark:text-gray-300">
+                    <td className="py-2 pr-3 text-gray-700 dark:text-gray-300 dark:text-slate-300">
                       INR {item.amount}
                     </td>
                     <td className="py-2 pr-3">
-                      <span className="px-2 py-1 rounded-full text-xs font-semibold bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-200">
-                        {item.requestStatus}
+                      <span
+                        className={`px-2 py-1 rounded-full text-xs font-semibold ${
+                          (item.requestStatus || "").toLowerCase() === "approved"
+                            ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-200"
+                            : (item.requestStatus || "").toLowerCase() === "rejected"
+                            ? "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-200"
+                            : "bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-200"
+                        }`}
+                      >
+                        {item.requestStatus || "Pending"}
                       </span>
                     </td>
                   </tr>
                 ))
               ) : (
                 <tr>
-                  <td colSpan={8} className="py-4 text-gray-600 dark:text-gray-300">
+                  <td colSpan={8} className="py-4 text-gray-600 dark:text-gray-300 dark:text-slate-400">
                     No bonafide requests found.
                   </td>
                 </tr>

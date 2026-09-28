@@ -47,12 +47,12 @@ const Timetable = () => {
   }, [userData, userData.branchId, userData.semester]);
 
   return (
-    <div className="section-student-timetable w-full mx-auto mt-10 flex justify-center items-start flex-col mb-10 text-gray-900 dark:text-gray-100">
+    <div className="section-student-timetable w-full mx-auto mt-10 flex justify-center items-start flex-col mb-10 text-gray-900 dark:text-gray-100 dark:text-white">
       <div className="flex justify-between items-center w-full">
         <Heading title={`Timetable of Semester ${userData.semester}`} />
         {!dataLoading && timetable && (
           <p
-            className="flex justify-center items-center text-lg font-medium cursor-pointer text-gray-800 dark:text-gray-100 hover:text-red-500 hover:scale-110 ease-linear transition-all duration-200 hover:duration-200 hover:ease-linear hover:transition-all"
+            className="flex justify-center items-center text-lg font-medium cursor-pointer text-gray-800 dark:text-gray-100 hover:text-red-500 hover:scale-110 ease-linear transition-all duration-200 hover:duration-200 hover:ease-linear hover:transition-all dark:text-slate-100"
             onClick={() =>
               window.open(process.env.REACT_APP_MEDIA_LINK + "/" + timetable)
             }
@@ -67,13 +67,13 @@ const Timetable = () => {
       {dataLoading && <Loading />}
       {!dataLoading && timetable && (
         <img
-          className="mt-8 rounded-lg shadow-md w-[90%] md:w-[70%] mx-auto border border-gray-200 dark:border-gray-700"
+          className="mt-8 rounded-lg shadow-md w-[90%] md:w-[70%] mx-auto border border-gray-200 dark:border-gray-700 dark:border-slate-800"
           src={process.env.REACT_APP_MEDIA_LINK + "/" + timetable}
           alt="timetable"
         />
       )}
       {!dataLoading && !timetable && (
-        <p className="mt-10 text-gray-700 dark:text-gray-300">
+        <p className="mt-10 text-gray-700 dark:text-gray-300 dark:text-slate-300">
           No Timetable Available At The Moment!
         </p>
       )}

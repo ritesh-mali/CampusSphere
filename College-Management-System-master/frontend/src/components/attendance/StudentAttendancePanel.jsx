@@ -32,8 +32,8 @@ const StudentAttendancePanel = () => {
   }, []);
 
   return (
-    <div className="section-attendance-student rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4 sm:p-6 shadow-sm">
-      <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4">
+    <div className="section-attendance-student rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4 sm:p-6 shadow-sm dark:border-slate-800">
+      <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-4 dark:text-white">
         Attendance
       </h3>
 
@@ -61,7 +61,7 @@ const StudentAttendancePanel = () => {
       <div className="overflow-x-auto">
         <table className="min-w-full text-sm">
           <thead>
-            <tr className="text-left border-b border-gray-200 dark:border-gray-700">
+            <tr className="text-left border-b border-gray-200 dark:border-gray-700 dark:border-slate-800">
               <th className="py-2 pr-3">Date</th>
               <th className="py-2 pr-3">Subject</th>
               <th className="py-2 pr-3">Status</th>
@@ -74,10 +74,10 @@ const StudentAttendancePanel = () => {
                   key={item._id}
                   className="border-b border-gray-100 dark:border-gray-800"
                 >
-                  <td className="py-2 pr-3 text-gray-700 dark:text-gray-300">
+                  <td className="py-2 pr-3 text-gray-700 dark:text-gray-300 dark:text-slate-300">
                     {new Date(item.date).toLocaleDateString()}
                   </td>
-                  <td className="py-2 pr-3 text-gray-700 dark:text-gray-300">
+                  <td className="py-2 pr-3 text-gray-700 dark:text-gray-300 dark:text-slate-300">
                     {item.subjectId?.name || "-"}
                   </td>
                   <td className="py-2 pr-3">
@@ -95,7 +95,7 @@ const StudentAttendancePanel = () => {
               ))
             ) : (
               <tr>
-                <td colSpan={3} className="py-4 text-gray-600 dark:text-gray-300">
+                <td colSpan={3} className="py-4 text-gray-600 dark:text-gray-300 dark:text-slate-400">
                   No attendance records found.
                 </td>
               </tr>

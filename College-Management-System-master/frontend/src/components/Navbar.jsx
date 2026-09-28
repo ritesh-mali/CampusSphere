@@ -21,37 +21,37 @@ const Navbar = ({ title, onToggleSidebar, rightSlot }) => {
     title || (userType ? `${userType} Dashboard` : "Dashboard");
 
   return (
-    <div className="sticky top-0 z-40 border-b border-slate-200/70 dark:border-slate-800/70 bg-white/70 dark:bg-slate-950/50 backdrop-blur px-4 sm:px-6 py-4 mb-6 transition-colors">
-      <div className="max-w-7xl flex flex-col gap-3 sm:flex-row sm:justify-between sm:items-center mx-auto">
+    <div className="flex w-full items-center justify-between py-3 transition-colors">
+      <div className="flex w-full flex-col gap-3 sm:flex-row sm:justify-between sm:items-center mx-auto">
         <p
-          className="font-semibold text-xl sm:text-2xl flex justify-center sm:justify-start items-center gap-2 cursor-pointer text-center sm:text-left text-slate-900 dark:text-slate-100"
+          className="font-bold text-xl tracking-tight flex justify-center sm:justify-start items-center gap-3 cursor-pointer text-center sm:text-left text-slate-900 dark:text-white hover:opacity-80 transition-opacity"
           onClick={() => navigate("/")}
         >
           <span
             className={cn(
-              "inline-flex h-9 w-9 items-center justify-center rounded-2xl",
-              "bg-gradient-to-br from-brand-600 to-indigo-600 text-white shadow-soft"
+              "inline-flex h-10 w-10 items-center justify-center rounded-xl",
+              "bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg"
             )}
           >
             <LayoutDashboard className="h-5 w-5" />
           </span>
-          <span className="truncate">
+          <span className="truncate bg-clip-text text-transparent bg-gradient-to-r from-slate-900 to-slate-600 dark:from-white dark:to-slate-400">
             {(router.state && router.state.type
               ? `${router.state.type} Dashboard`
               : derivedTitle) || "Dashboard"}
           </span>
         </p>
 
-        <div className="flex w-full sm:w-auto items-center gap-2">
+        <div className="flex w-full sm:w-auto items-center gap-4">
           {onToggleSidebar ? (
             <button
               type="button"
               onClick={onToggleSidebar}
               className={cn(
                 "md:hidden inline-flex h-10 w-10 items-center justify-center rounded-xl",
-                "bg-white/70 dark:bg-slate-900/60 border border-slate-200/70 dark:border-slate-800/70",
-                "text-slate-700 dark:text-slate-200 shadow-soft backdrop-blur",
-                "hover:bg-white dark:hover:bg-slate-900 transition"
+                "bg-black/5 dark:bg-white/10 border border-black/5 dark:border-white/10",
+                "text-slate-700 dark:text-slate-200 shadow-sm backdrop-blur",
+                "hover:bg-black/10 dark:hover:bg-white/20 transition"
               )}
               aria-label="Open sidebar"
             >
@@ -67,17 +67,20 @@ const Navbar = ({ title, onToggleSidebar, rightSlot }) => {
             </div>
           ) : null}
 
+          <div className="h-6 w-px bg-slate-200 dark:bg-slate-800 hidden sm:block mx-1"></div>
+          
           <ThemeToggle />
+          
           <CustomButton
             variant="danger"
             onClick={logouthandler}
-            className="w-full sm:w-auto"
+            className="w-full sm:w-auto !rounded-xl !px-4"
           >
-            <span className="hidden sm:inline">Logout</span>
+            <span className="hidden sm:inline font-semibold">Logout</span>
             <span className="sm:hidden inline-flex items-center justify-center">
               <LogOut className="h-4 w-4" />
             </span>
-            <span className="hidden sm:inline-flex ml-1">
+            <span className="hidden sm:inline-flex ml-2">
               <LogOut className="h-4 w-4" />
             </span>
           </CustomButton>

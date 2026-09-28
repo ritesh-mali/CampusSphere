@@ -4,15 +4,15 @@ import { cn } from "../../utils/cn";
 
 const VARIANTS = {
   primary:
-    "bg-brand-600 text-white hover:bg-brand-700 shadow-soft hover:shadow-softer",
+    "btn-primary",
   secondary:
-    "bg-slate-900 text-white hover:bg-slate-800 shadow-soft hover:shadow-softer dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white",
+    "bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 hover:border-slate-300 shadow-sm dark:bg-white/5 dark:text-white dark:border-white/10 dark:hover:bg-white/10 transition-all",
   outline:
-    "bg-white text-slate-900 ring-1 ring-slate-200 hover:bg-slate-50 shadow-soft dark:bg-slate-900 dark:text-slate-100 dark:ring-slate-800 dark:hover:bg-slate-800",
+    "bg-transparent text-slate-900 ring-1 ring-slate-200 hover:bg-slate-50 shadow-soft dark:text-slate-100 dark:ring-slate-800 dark:hover:bg-slate-800/50 transition-all",
   ghost:
-    "bg-transparent text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800",
+    "bg-transparent text-slate-700 hover:bg-black/5 dark:text-slate-200 dark:hover:bg-white/10 transition-all",
   danger:
-    "bg-rose-600 text-white hover:bg-rose-700 shadow-soft hover:shadow-softer",
+    "bg-gradient-to-br from-rose-500 to-rose-600 text-white hover:from-rose-600 hover:to-rose-700 shadow-md hover:shadow-lg transition-all",
 };
 
 const SIZES = {

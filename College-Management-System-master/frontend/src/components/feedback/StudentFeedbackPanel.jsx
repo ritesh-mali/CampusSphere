@@ -69,8 +69,8 @@ const StudentFeedbackPanel = () => {
   };
 
   return (
-    <div className="section-feedback-student rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4 sm:p-6 shadow-sm">
-      <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-3">Submit Feedback</h3>
+    <div className="section-feedback-student rounded-2xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4 sm:p-6 shadow-sm dark:border-slate-800">
+      <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100 mb-3 dark:text-slate-100">Submit Feedback</h3>
 
       <select
         value={selectedFormId}
@@ -78,7 +78,7 @@ const StudentFeedbackPanel = () => {
           setSelectedFormId(e.target.value);
           setAnswers({});
         }}
-        className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-2 text-sm mb-4"
+        className="w-full rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 px-3 py-2 text-sm mb-4 dark:border-slate-700 dark:text-white"
       >
         <option value="">Select feedback form</option>
         {forms.map((form) => (
@@ -90,7 +90,7 @@ const StudentFeedbackPanel = () => {
       </select>
 
       {forms.length === 0 && (
-        <p className="text-sm text-gray-600 dark:text-gray-300 mb-3">
+        <p className="text-sm text-gray-600 dark:text-gray-300 mb-3 dark:text-slate-400">
           No pending feedback forms for your branch/semester.
         </p>
       )}
@@ -98,15 +98,15 @@ const StudentFeedbackPanel = () => {
       {selectedForm && (
         <div className="space-y-3">
           {selectedForm.questions.map((question, idx) => (
-            <div key={`question-${idx}`} className="rounded-md bg-gray-50 dark:bg-gray-800 p-3">
-              <p className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">
+            <div key={`question-${idx}`} className="rounded-md bg-gray-50 dark:bg-gray-800 p-3 dark:bg-slate-900/50">
+              <p className="text-sm font-medium text-gray-700 dark:text-gray-200 mb-2 dark:text-slate-300">
                 {idx + 1}. {question.text}
               </p>
               {question.type === "rating" ? (
                 <select
                   value={answers[idx]?.rating || 5}
                   onChange={(e) => setAnswer(idx, { rating: Number(e.target.value) })}
-                  className="rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-3 py-2 text-sm"
+                  className="rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-3 py-2 text-sm dark:border-slate-700 dark:text-white"
                 >
                   <option value={1}>1</option>
                   <option value={2}>2</option>
@@ -119,7 +119,7 @@ const StudentFeedbackPanel = () => {
                   rows={3}
                   value={answers[idx]?.text || ""}
                   onChange={(e) => setAnswer(idx, { text: e.target.value })}
-                  className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-3 py-2 text-sm"
+                  className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 px-3 py-2 text-sm dark:border-slate-700 dark:text-white"
                   placeholder="Write your feedback..."
                 />
               )}

@@ -31,7 +31,7 @@ const Material = new mongoose.Schema(
     },
     type: {
       type: String,
-      enum: ["notes", "assignment", "syllabus", "other"],
+      enum: ["notes", "pdf", "video", "paper", "assignment", "lab-manual", "syllabus", "other"],
       required: true,
     },
     /** Optional — used for assignment deadline reminders (CampusSphere notifications). */

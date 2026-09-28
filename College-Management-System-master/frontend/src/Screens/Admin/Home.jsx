@@ -10,13 +10,12 @@ import { useDispatch } from "react-redux";
 import { setUserData } from "../../redux/actions";
 import axiosWrapper from "../../utils/AxiosWrapper";
 import Profile from "./Profile";
-import Exam from "../Exam";
 import { useNavigate, useLocation } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import PlacementAdminPanel from "../../campussphere/PlacementAdminPanel";
 import EventsPanel from "../../campussphere/EventsPanel";
-import MockInterviewAdminPage from "../../mock-interview/MockInterviewAdminPage";
 import DashboardLayout from "../../components/layout/DashboardLayout";
+import BonafideAdminPanel from "../../components/bonafide/BonafideAdminPanel";
 import "../../styles/sections/dash-theme-admin.css";
 
 const MENU_ITEMS = [
@@ -25,12 +24,11 @@ const MENU_ITEMS = [
   { id: "faculty", label: "Faculty", component: Faculty },
   { id: "branch", label: "Branch", component: Branch },
   { id: "notice", label: "Notice", component: Notice },
-  { id: "exam", label: "Exam", component: Exam },
   { id: "subjects", label: "Subjects", component: Subjects },
   { id: "admin", label: "Admin", component: Admin },
   { id: "placement-admin", label: "Placement admin", component: PlacementAdminPanel },
   { id: "events-admin", label: "Events", component: () => <EventsPanel mode="admin" /> },
-  { id: "mock-interview-admin", label: "AI Mock Interview", component: MockInterviewAdminPage },
+  { id: "bonafide", label: "Bonafide", component: BonafideAdminPanel },
 ];
 
 const Home = () => {

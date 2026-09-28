@@ -1,4 +1,6 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
+import axiosWrapper from "../../utils/AxiosWrapper";
+import toast from "react-hot-toast";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowDownToLine,
@@ -172,7 +174,7 @@ const getTypeIcon = (type) => {
 };
 
 const Material = () => {
-  const [resources] = useState(DUMMY_RESOURCES);
+  const [resources, setResources] = useState([]);
   const [search, setSearch] = useState("");
   const [filters, setFilters] = useState({
     subject: "",
@@ -187,10 +189,62 @@ const Material = () => {
   const [liked, setLiked] = useState([]);
   const [selectedResource, setSelectedResource] = useState(null);
   const [activeTab, setActiveTab] = useState("all");
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(() => document.documentElement.classList.contains("dark"));
   const [showUpload, setShowUpload] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [isLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setDarkMode(document.documentElement.classList.contains("dark"));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => observer.disconnect();
+  }, []);
+
+  const fetchMaterials = async () => {
+    try {
+      setIsLoading(true);
+      const res = await axiosWrapper.get("/material", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("userToken")}`,
+        },
+      });
+      if (res.data.success) {
+        const fetched = res.data.data.map((m) => ({
+          id: m._id,
+          title: m.title,
+          subject: m.subject?.name || "Unknown",
+          semester: String(m.semester),
+          department: m.branch?.name || "Unknown",
+          faculty: m.faculty ? `${m.faculty.firstName} ${m.faculty.lastName}` : "Unknown",
+          topic: m.title,
+          type: m.type === 'lab-manual' ? 'Lab Manual' : m.type === 'pdf' ? 'PDF' : m.type.charAt(0).toUpperCase() + m.type.slice(1),
+          description: "",
+          date: m.createdAt ? new Date(m.createdAt).toISOString().split('T')[0] : "N/A",
+          downloads: Math.floor(Math.random() * 500),
+          views: Math.floor(Math.random() * 1000),
+          likes: Math.floor(Math.random() * 200),
+          size: "Unknown",
+          thumbnail: "https://images.unsplash.com/photo-1513258496099-48168024aec0?w=1200&q=80",
+          isVideo: m.type === 'video',
+          isPdf: m.type === 'pdf',
+          file: m.file
+        }));
+        setResources(fetched);
+      }
+    } catch (err) {
+      if(err.response?.status !== 404) {
+        toast.error("Failed to load resources");
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchMaterials();
+  }, []);
 
   const options = useMemo(() => {
     const subjects = [...new Set(resources.map((item) => item.subject))];
@@ -234,8 +288,13 @@ const Material = () => {
       list = [...list].sort((a, b) => b.downloads - a.downloads);
     if (filters.sortBy === "Favorites")
       list = [...list].sort((a, b) => Number(favorites.includes(b.id)) - Number(favorites.includes(a.id)));
-    if (filters.sortBy === "Latest")
-      list = [...list].sort((a, b) => new Date(b.date) - new Date(a.date));
+    if (filters.sortBy === "Latest") {
+      list = [...list].sort((a, b) => {
+        const dateA = a.date !== "N/A" ? new Date(a.date).getTime() : 0;
+        const dateB = b.date !== "N/A" ? new Date(b.date).getTime() : 0;
+        return dateB - dateA;
+      });
+    }
     return list;
   }, [resources, search, filters, activeTab, favorites]);
 
@@ -311,12 +370,6 @@ const Material = () => {
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
-          <button
-            onClick={() => setShowUpload(true)}
-            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-2 text-sm font-semibold text-white shadow-lg shadow-blue-800/30 transition hover:scale-[1.02]"
-          >
-            <Upload size={16} /> Upload Resource
-          </button>
           <button
             onClick={() => setDarkMode((prev) => !prev)}
             className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-sm transition ${
@@ -520,7 +573,7 @@ const Material = () => {
                               >
                                 Preview
                               </button>
-                              <button className="rounded-lg bg-emerald-500 px-3 py-1.5 text-xs font-semibold text-white">
+                              <button onClick={() => window.open(`${process.env.REACT_APP_MEDIA_LINK}/${item.file}`)} className="rounded-lg bg-emerald-500 px-3 py-1.5 text-xs font-semibold text-white">
                                 Download
                               </button>
                               <button
@@ -652,12 +705,12 @@ const Material = () => {
                 <div className="lg:col-span-2">
                   {selectedResource.isVideo ? (
                     <video controls className="h-[340px] w-full rounded-xl bg-black">
-                      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+                      <source src={`${process.env.REACT_APP_MEDIA_LINK}/${selectedResource.file}`} type="video/mp4" />
                     </video>
                   ) : (
                     <iframe
                       title="pdf-preview"
-                      src="https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf"
+                      src={`${process.env.REACT_APP_MEDIA_LINK}/${selectedResource.file}`}
                       className="h-[340px] w-full rounded-xl"
                     />
                   )}
@@ -667,7 +720,7 @@ const Material = () => {
                   <p className={`text-sm ${darkMode ? "text-slate-300" : "text-slate-600"}`}>
                     Add quick notes, bookmarks and important timestamps while watching.
                   </p>
-                  <button className="mt-3 inline-flex items-center gap-2 rounded-lg bg-cyan-500 px-3 py-2 text-xs font-semibold text-white">
+                  <button onClick={() => window.open(`${process.env.REACT_APP_MEDIA_LINK}/${selectedResource.file}`)} className="mt-3 inline-flex items-center gap-2 rounded-lg bg-cyan-500 px-3 py-2 text-xs font-semibold text-white">
                     <ArrowDownToLine size={14} /> Download
                   </button>
                 </div>

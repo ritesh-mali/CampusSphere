@@ -47,7 +47,7 @@ const addMaterialController = async (req, res) => {
       return ApiResponse.badRequest("Material file is required").send(res);
     }
 
-    if (!["notes", "assignment", "syllabus", "other"].includes(type)) {
+    if (!["notes", "pdf", "video", "paper", "assignment", "lab-manual", "syllabus", "other"].includes(type)) {
       return ApiResponse.badRequest("Invalid material type").send(res);
     }
 
@@ -129,7 +129,7 @@ const updateMaterialController = async (req, res) => {
     if (semester) updateData.semester = semester;
     if (branch) updateData.branch = branch;
     if (type) {
-      if (!["notes", "assignment", "syllabus", "other"].includes(type)) {
+      if (!["notes", "pdf", "video", "paper", "assignment", "lab-manual", "syllabus", "other"].includes(type)) {
         return ApiResponse.badRequest("Invalid material type").send(res);
       }
       updateData.type = type;

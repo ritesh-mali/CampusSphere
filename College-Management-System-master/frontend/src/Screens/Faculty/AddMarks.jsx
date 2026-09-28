@@ -281,17 +281,17 @@ const AddMarks = () => {
       </div>
 
       {showSearch && (
-        <div className="w-full bg-white rounded-lg p-6 mb-8">
+        <div className="w-full bg-white dark:bg-slate-900 dark:text-white rounded-lg p-6 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-[90%] mx-auto">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                 Semester
               </label>
               <select
                 name="semester"
                 value={selectedSemester || ""}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
               >
                 <option value="">Select Semester</option>
                 {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
@@ -303,14 +303,14 @@ const AddMarks = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                 Branch
               </label>
               <select
                 name="branch"
                 value={selectedBranch?._id || ""}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
               >
                 <option value="">Select Branch</option>
                 {branches?.map((branch) => (
@@ -322,7 +322,7 @@ const AddMarks = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                 Subjects
               </label>
               <select
@@ -342,14 +342,14 @@ const AddMarks = () => {
                 ))}
               </select>
               {!selectedBranch && (
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-gray-500 mt-1 dark:text-slate-400">
                   Please select a branch first
                 </p>
               )}
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                 Exam
               </label>
               <select
@@ -369,7 +369,7 @@ const AddMarks = () => {
                 ))}
               </select>
               {!selectedSubject && (
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-gray-500 mt-1 dark:text-slate-400">
                   Please select a subject first
                 </p>
               )}
@@ -397,63 +397,63 @@ const AddMarks = () => {
 
       {/* Marks Entry Section */}
       {!showSearch && masterMarksData && masterMarksData.length > 0 && (
-        <div className="w-full bg-white rounded-lg p-6">
+        <div className="w-full bg-white dark:bg-slate-900 dark:text-white rounded-lg p-6">
           <div className="space-y-4 w-full mb-6">
             <div className="flex flex-col gap-4 w-[90%] mx-auto">
               <div className="grid grid-cols-4 gap-4">
-                <div className="border p-3 rounded-md shadow">
-                  <span className="text-sm text-gray-500">
+                <div className="border p-3 rounded-md shadow dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200">
+                  <span className="text-sm text-gray-500 dark:text-slate-400">
                     Branch and Semester:
                   </span>
-                  <p className="text-gray-800">
+                  <p className="text-gray-800 dark:text-slate-100">
                     {selectedBranch?.branchId} - Semester {selectedSemester}
                   </p>
                 </div>
 
-                <div className="border p-3 rounded-md shadow">
-                  <span className="text-sm text-gray-500">Exam:</span>
-                  <p className="text-gray-800">
+                <div className="border p-3 rounded-md shadow dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200">
+                  <span className="text-sm text-gray-500 dark:text-slate-400">Exam:</span>
+                  <p className="text-gray-800 dark:text-slate-100">
                     {selectedExam?.name || "Not Selected"}
                   </p>
                 </div>
-                <div className="border p-3 rounded-md shadow">
-                  <span className="text-sm text-gray-500">Exam Type:</span>
-                  <p className="text-gray-800">
+                <div className="border p-3 rounded-md shadow dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200">
+                  <span className="text-sm text-gray-500 dark:text-slate-400">Exam Type:</span>
+                  <p className="text-gray-800 dark:text-slate-100">
                     {selectedExam?.examType === "mid" ? "Mid Term" : "End Term"}
                   </p>
                 </div>
-                <div className="border p-3 rounded-md shadow">
-                  <span className="text-sm text-gray-500">Subject:</span>
-                  <p className="text-gray-800">
+                <div className="border p-3 rounded-md shadow dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200">
+                  <span className="text-sm text-gray-500 dark:text-slate-400">Subject:</span>
+                  <p className="text-gray-800 dark:text-slate-100">
                     {selectedSubject?.name || "Not Selected"}
                   </p>
                 </div>
               </div>
 
               <div className="grid grid-cols-4 gap-4">
-                <div className="border p-3 rounded-md shadow">
-                  <span className="text-sm text-gray-500">Total Marks:</span>
-                  <p className="text-gray-800">
+                <div className="border p-3 rounded-md shadow dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200">
+                  <span className="text-sm text-gray-500 dark:text-slate-400">Total Marks:</span>
+                  <p className="text-gray-800 dark:text-slate-100">
                     {selectedExam?.totalMarks || "Not Selected"}
                   </p>
                 </div>
-                <div className="border p-3 rounded-md shadow">
-                  <span className="text-sm text-gray-500">Date:</span>
-                  <p className="text-gray-800">
+                <div className="border p-3 rounded-md shadow dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200">
+                  <span className="text-sm text-gray-500 dark:text-slate-400">Date:</span>
+                  <p className="text-gray-800 dark:text-slate-100">
                     {selectedExam?.date
                       ? new Date(selectedExam.date).toLocaleDateString()
                       : "Not Selected"}
                   </p>
                 </div>
-                <div className="border p-3 rounded-md shadow">
-                  <span className="text-sm text-gray-500">Time:</span>
-                  <p className="text-gray-800">
+                <div className="border p-3 rounded-md shadow dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200">
+                  <span className="text-sm text-gray-500 dark:text-slate-400">Time:</span>
+                  <p className="text-gray-800 dark:text-slate-100">
                     {selectedExam?.time || "Not Selected"}
                   </p>
                 </div>
-                <div className="border p-3 rounded-md shadow">
-                  <span className="text-sm text-gray-500">Students:</span>
-                  <p className="text-gray-800">
+                <div className="border p-3 rounded-md shadow dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200">
+                  <span className="text-sm text-gray-500 dark:text-slate-400">Students:</span>
+                  <p className="text-gray-800 dark:text-slate-100">
                     {masterMarksData.length || "Not Selected"}
                   </p>
                 </div>
@@ -475,16 +475,16 @@ const AddMarks = () => {
             {masterMarksData.map((student) => (
               <div
                 key={student._id}
-                className="flex items-center justify-between w-full border rounded-md"
+                className="flex items-center justify-between w-full border rounded-md dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200"
               >
-                <p className="font-medium text-gray-700 flex items-center justify-center px-3 h-full py-2 rounded-md min-w-[120px] text-center">
+                <p className="font-medium text-gray-700 flex items-center justify-center px-3 h-full py-2 rounded-md min-w-[120px] text-center dark:text-slate-300">
                   {student.enrollmentNo}
                 </p>
                 <input
                   type="number"
                   min={0}
                   max={selectedExam?.totalMarks || 100}
-                  className="px-4 py-2 border rounded-md focus:outline-none bg-gray-50 border-gray-200 focus:ring-2 focus:ring-blue-500 w-full m-2"
+                  className="px-4 py-2 border rounded-md focus:outline-none bg-gray-50 border-gray-200 focus:ring-2 focus:ring-blue-500 w-full m-2 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                   value={marksData[student._id] || ""}
                   placeholder="Enter Marks"
                   onChange={(e) =>
@@ -505,9 +505,9 @@ const AddMarks = () => {
                 id="consent"
                 checked={consent}
                 onChange={(e) => setConsent(e.target.checked)}
-                className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+                className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:border-slate-700"
               />
-              <label htmlFor="consent" className="text-sm text-gray-700">
+              <label htmlFor="consent" className="text-sm text-gray-700 dark:text-slate-300">
                 I confirm that all marks entered are correct and verified
               </label>
             </div>

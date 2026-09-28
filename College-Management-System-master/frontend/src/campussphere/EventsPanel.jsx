@@ -34,7 +34,7 @@ function Countdown({ target }) {
     return () => clearInterval(id);
   }, []);
   const t = new Date(target).getTime() - now;
-  if (t <= 0) return <span className="text-gray-500">Started or past</span>;
+  if (t <= 0) return <span className="text-gray-500 dark:text-slate-400">Started or past</span>;
   const d = Math.floor(t / 86400000);
   const h = Math.floor((t % 86400000) / 3600000);
   const m = Math.floor((t % 3600000) / 60000);
@@ -162,7 +162,7 @@ const EventsPanel = ({ mode }) => {
   return (
     <div className="section-events w-full py-4 px-2">
       <Heading title="Campus events" />
-      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-6">
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-6 dark:text-slate-400">
         {mode === "student"
           ? "Browse hackathons, workshops, and seminars. Register in one click."
           : "Create and manage events. Students see them on their dashboard."}
@@ -171,18 +171,18 @@ const EventsPanel = ({ mode }) => {
       {(mode === "faculty" || mode === "admin") && (
         <form
           onSubmit={onCreate}
-          className="mb-8 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 bg-white dark:bg-gray-900 space-y-3 max-w-xl"
+          className="mb-8 rounded-2xl border border-gray-200 dark:border-gray-700 p-4 bg-white dark:bg-gray-900 space-y-3 max-w-xl dark:border-slate-800"
         >
           <h3 className="font-semibold text-gray-900 dark:text-white">New event</h3>
           <input
-            className="w-full border rounded-md px-3 py-2 dark:bg-gray-800 dark:border-gray-600"
+            className="w-full border rounded-md px-3 py-2 dark:bg-gray-800 dark:border-gray-600 dark:text-slate-200"
             placeholder="Title"
             value={createForm.title}
             onChange={(e) => setCreateForm((f) => ({ ...f, title: e.target.value }))}
             required
           />
           <textarea
-            className="w-full border rounded-md px-3 py-2 dark:bg-gray-800 dark:border-gray-600"
+            className="w-full border rounded-md px-3 py-2 dark:bg-gray-800 dark:border-gray-600 dark:text-slate-200"
             placeholder="Description"
             rows={2}
             value={createForm.description}
@@ -192,7 +192,7 @@ const EventsPanel = ({ mode }) => {
           />
           <input
             type="datetime-local"
-            className="w-full border rounded-md px-3 py-2 dark:bg-gray-800 dark:border-gray-600"
+            className="w-full border rounded-md px-3 py-2 dark:bg-gray-800 dark:border-gray-600 dark:text-slate-200"
             value={createForm.event_datetime}
             onChange={(e) =>
               setCreateForm((f) => ({ ...f, event_datetime: e.target.value }))
@@ -200,7 +200,7 @@ const EventsPanel = ({ mode }) => {
             required
           />
           <input
-            className="w-full border rounded-md px-3 py-2 dark:bg-gray-800 dark:border-gray-600"
+            className="w-full border rounded-md px-3 py-2 dark:bg-gray-800 dark:border-gray-600 dark:text-slate-200"
             placeholder="Location"
             value={createForm.location}
             onChange={(e) => setCreateForm((f) => ({ ...f, location: e.target.value }))}
@@ -232,10 +232,10 @@ const EventsPanel = ({ mode }) => {
                 {ev.status}
               </span>
             </div>
-            <p className="text-xs text-gray-500 mt-1">
+            <p className="text-xs text-gray-500 mt-1 dark:text-slate-400">
               {new Date(ev.event_datetime).toLocaleString()} · {ev.location}
             </p>
-            <p className="text-xs text-gray-500 mt-2">
+            <p className="text-xs text-gray-500 mt-2 dark:text-slate-400">
               Countdown: <Countdown target={ev.event_datetime} />
             </p>
           </button>
@@ -243,11 +243,11 @@ const EventsPanel = ({ mode }) => {
       </div>
 
       {selected && (
-        <div className="rounded-2xl border border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-gray-900 max-w-2xl">
+        <div className="rounded-2xl border border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-gray-900 max-w-2xl dark:border-slate-800">
           <h3 className="text-xl font-bold text-gray-900 dark:text-white">
             {selected.title}
           </h3>
-          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 whitespace-pre-wrap">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 whitespace-pre-wrap dark:text-slate-400">
             {selected.description}
           </p>
           <p className="text-sm mt-2">
@@ -270,12 +270,12 @@ const EventsPanel = ({ mode }) => {
             <form onSubmit={onUpdate} className="mt-6 space-y-2 border-t pt-4 dark:border-gray-700">
               <h4 className="font-medium text-gray-900 dark:text-white">Edit your event</h4>
               <input
-                className="w-full border rounded-md px-3 py-2 dark:bg-gray-800"
+                className="w-full border rounded-md px-3 py-2 dark:bg-gray-800 dark:border-slate-800 dark:text-slate-200"
                 value={editForm.title}
                 onChange={(e) => setEditForm((f) => ({ ...f, title: e.target.value }))}
               />
               <textarea
-                className="w-full border rounded-md px-3 py-2 dark:bg-gray-800"
+                className="w-full border rounded-md px-3 py-2 dark:bg-gray-800 dark:border-slate-800 dark:text-slate-200"
                 rows={2}
                 value={editForm.description}
                 onChange={(e) =>
@@ -284,14 +284,14 @@ const EventsPanel = ({ mode }) => {
               />
               <input
                 type="datetime-local"
-                className="w-full border rounded-md px-3 py-2 dark:bg-gray-800"
+                className="w-full border rounded-md px-3 py-2 dark:bg-gray-800 dark:border-slate-800 dark:text-slate-200"
                 value={editForm.event_datetime}
                 onChange={(e) =>
                   setEditForm((f) => ({ ...f, event_datetime: e.target.value }))
                 }
               />
               <input
-                className="w-full border rounded-md px-3 py-2 dark:bg-gray-800"
+                className="w-full border rounded-md px-3 py-2 dark:bg-gray-800 dark:border-slate-800 dark:text-slate-200"
                 value={editForm.location}
                 onChange={(e) => setEditForm((f) => ({ ...f, location: e.target.value }))}
               />
@@ -304,7 +304,7 @@ const EventsPanel = ({ mode }) => {
               <h4 className="font-medium mb-2 text-gray-900 dark:text-white">
                 Registered students (IDs)
               </h4>
-              <ul className="text-sm text-gray-700 dark:text-gray-300 max-h-40 overflow-y-auto">
+              <ul className="text-sm text-gray-700 dark:text-gray-300 max-h-40 overflow-y-auto dark:text-slate-300">
                 {regs.map((r) => (
                   <li key={`${r.student_id}-${r.registered_at}`}>
                     {r.student_id} — {new Date(r.registered_at).toLocaleString()}

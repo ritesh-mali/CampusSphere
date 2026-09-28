@@ -52,17 +52,17 @@ const ViewMarks = () => {
   const endTermMarks = marks.filter((mark) => mark.examId.examType === "end");
 
   return (
-    <div className="section-student-marks w-full mx-auto mt-10 flex justify-center items-start flex-col mb-10 text-gray-900 dark:text-gray-100">
+    <div className="section-student-marks w-full mx-auto mt-10 flex justify-center items-start flex-col mb-10 text-gray-900 dark:text-gray-100 dark:text-white">
       <div className="flex justify-between items-center w-full mb-6">
         <Heading title="View Marks" />
         <div className="flex items-center gap-4">
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label className="text-sm font-medium text-gray-700 dark:text-gray-300 dark:text-slate-300">
             Semester:
           </label>
           <select
             value={selectedSemester || ""}
             onChange={handleSemesterChange}
-            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-700 dark:text-white dark:focus:ring-blue-600"
           >
             {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
               <option key={sem} value={sem}>
@@ -74,25 +74,25 @@ const ViewMarks = () => {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
-        <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6 border border-gray-100 dark:border-gray-800">
-          <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+        <div className="bg-white dark:bg-slate-900 dark:text-white rounded-lg shadow-md p-6 border border-slate-200 dark:border-slate-800">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100 dark:text-white">
             Mid Term Marks
           </h2>
           {dataLoading ? (
-            <p className="text-gray-500 dark:text-gray-300">Loading...</p>
+            <p className="text-gray-500 dark:text-gray-300 dark:text-slate-400">Loading...</p>
           ) : midTermMarks.length > 0 ? (
             <div className="space-y-4">
               {midTermMarks.map((mark) => (
                 <div
                   key={mark._id}
-                  className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors dark:border-slate-800"
                 >
                   <div className="flex justify-between items-center">
                     <div>
-                      <p className="font-medium text-gray-800 dark:text-gray-100">
+                      <p className="font-medium text-gray-800 dark:text-gray-100 dark:text-slate-100">
                         {mark.subjectId.name}
                       </p>
-                      <p className="text-sm text-gray-500 dark:text-gray-300">
+                      <p className="text-sm text-gray-500 dark:text-gray-300 dark:text-slate-400">
                         {mark.examId.name}
                       </p>
                     </div>
@@ -100,7 +100,7 @@ const ViewMarks = () => {
                       <p className="text-lg font-semibold text-blue-600">
                         {mark.marksObtained}
                       </p>
-                      <p className="text-sm text-gray-500 dark:text-gray-300">
+                      <p className="text-sm text-gray-500 dark:text-gray-300 dark:text-slate-400">
                         out of {mark.examId.totalMarks}
                       </p>
                     </div>
@@ -109,31 +109,31 @@ const ViewMarks = () => {
               ))}
             </div>
           ) : (
-            <p className="text-gray-500 dark:text-gray-300">
+            <p className="text-gray-500 dark:text-gray-300 dark:text-slate-400">
               No mid term marks available
             </p>
           )}
         </div>
 
-        <div className="bg-white dark:bg-gray-900 rounded-lg shadow-md p-6 border border-gray-100 dark:border-gray-800">
-          <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+        <div className="bg-white dark:bg-slate-900 dark:text-white rounded-lg shadow-md p-6 border border-slate-200 dark:border-slate-800">
+          <h2 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100 dark:text-white">
             End Term Marks
           </h2>
           {dataLoading ? (
-            <p className="text-gray-500 dark:text-gray-300">Loading...</p>
+            <p className="text-gray-500 dark:text-gray-300 dark:text-slate-400">Loading...</p>
           ) : endTermMarks.length > 0 ? (
             <div className="space-y-4">
               {endTermMarks.map((mark) => (
                 <div
                   key={mark._id}
-                  className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
+                  className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors dark:border-slate-800"
                 >
                   <div className="flex justify-between items-center">
                     <div>
-                      <p className="font-medium text-gray-800 dark:text-gray-100">
+                      <p className="font-medium text-gray-800 dark:text-gray-100 dark:text-slate-100">
                         {mark.subjectId.name}
                       </p>
-                      <p className="text-sm text-gray-500 dark:text-gray-300">
+                      <p className="text-sm text-gray-500 dark:text-gray-300 dark:text-slate-400">
                         {mark.examId.name}
                       </p>
                     </div>
@@ -141,7 +141,7 @@ const ViewMarks = () => {
                       <p className="text-lg font-semibold text-blue-600">
                         {mark.marksObtained}
                       </p>
-                      <p className="text-sm text-gray-500 dark:text-gray-300">
+                      <p className="text-sm text-gray-500 dark:text-gray-300 dark:text-slate-400">
                         out of {mark.examId.totalMarks}
                       </p>
                     </div>
@@ -150,7 +150,7 @@ const ViewMarks = () => {
               ))}
             </div>
           ) : (
-            <p className="text-gray-500 dark:text-gray-300">
+            <p className="text-gray-500 dark:text-gray-300 dark:text-slate-400">
               No end term marks available
             </p>
           )}

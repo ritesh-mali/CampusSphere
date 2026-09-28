@@ -142,16 +142,16 @@ const PlacementHubPanel = () => {
           {questions.map((q, idx) => (
             <div
               key={q.id}
-              className="rounded-xl border border-gray-200 dark:border-gray-700 p-4 bg-white dark:bg-gray-900"
+              className="rounded-xl border border-gray-200 dark:border-gray-700 p-4 bg-white dark:bg-gray-900 dark:border-slate-800"
             >
-              <p className="font-medium text-gray-900 dark:text-gray-100 mb-3">
+              <p className="font-medium text-gray-900 dark:text-gray-100 mb-3 dark:text-white">
                 {idx + 1}. {q.question}
               </p>
               <div className="space-y-2">
                 {q.options.map((opt, i) => (
                   <label
                     key={i}
-                    className="flex items-center gap-2 text-sm cursor-pointer text-gray-800 dark:text-gray-200"
+                    className="flex items-center gap-2 text-sm cursor-pointer text-gray-800 dark:text-gray-200 dark:text-slate-100"
                   >
                     <input
                       type="radio"
@@ -189,11 +189,11 @@ const PlacementHubPanel = () => {
     return (
       <div className="section-placement-hub w-full max-w-3xl mx-auto py-4 px-2">
         <Heading title="Quiz result" />
-        <div className="mt-4 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-gray-900">
+        <div className="mt-4 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 bg-white dark:bg-gray-900 dark:border-slate-800">
           <p className="text-2xl font-bold text-blue-600 dark:text-blue-400 mb-2">
             Score: {resultPayload.score} / {resultPayload.total} ({pct}%)
           </p>
-          <div className="h-3 w-full rounded-full bg-gray-200 dark:bg-gray-700 mb-6">
+          <div className="h-3 w-full rounded-full bg-gray-200 dark:bg-gray-700 mb-6 dark:bg-slate-800">
             <div
               className="h-full rounded-full bg-green-500 transition-all"
               style={{ width: `${pct}%` }}
@@ -213,7 +213,7 @@ const PlacementHubPanel = () => {
                 }`}
               >
                 <p className="font-medium">{r.question}</p>
-                <p className="text-gray-600 dark:text-gray-400">
+                <p className="text-gray-600 dark:text-gray-400 dark:text-slate-400">
                   Your answer: {r.options[r.selectedIndex] ?? "—"} | Correct:{" "}
                   {r.options[r.correctIndex]}
                 </p>
@@ -231,7 +231,7 @@ const PlacementHubPanel = () => {
   return (
     <div className="section-placement-hub w-full py-4 px-2">
       <Heading title="Placement preparation hub" />
-      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-6">
+      <p className="text-sm text-gray-600 dark:text-gray-400 mt-2 mb-6 dark:text-slate-400">
         Company-wise practice: aptitude, technical, and HR MCQs with a timer. Admins can add
         companies and questions from the admin dashboard.
       </p>
@@ -243,8 +243,8 @@ const PlacementHubPanel = () => {
             className="rounded-2xl border border-blue-100 dark:border-gray-700 bg-white dark:bg-gray-900 p-5 shadow-sm hover:shadow-md transition-shadow"
           >
             <h3 className="text-lg font-bold text-gray-900 dark:text-white">{c.name}</h3>
-            <p className="text-xs text-gray-500 mt-1 line-clamp-2">{c.description}</p>
-            <p className="text-xs text-gray-500 mt-2">
+            <p className="text-xs text-gray-500 mt-1 line-clamp-2 dark:text-slate-400">{c.description}</p>
+            <p className="text-xs text-gray-500 mt-2 dark:text-slate-400">
               Aptitude: {c.aptitude_count} · Technical: {c.technical_count} · HR: {c.hr_count}
             </p>
             <div className="mt-4 flex flex-col gap-2">
@@ -267,9 +267,9 @@ const PlacementHubPanel = () => {
       <h3 className="text-md font-semibold text-gray-900 dark:text-white mb-2">
         Your recent attempts
       </h3>
-      <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700">
+      <div className="overflow-x-auto rounded-xl border border-gray-200 dark:border-gray-700 dark:border-slate-800">
         <table className="min-w-full text-sm">
-          <thead className="bg-gray-100 dark:bg-gray-800">
+          <thead className="bg-gray-100 dark:bg-gray-800 dark:bg-slate-900/40">
             <tr>
               <th className="text-left p-2">Company</th>
               <th className="text-left p-2">Section</th>
@@ -280,13 +280,13 @@ const PlacementHubPanel = () => {
           <tbody>
             {attempts.length === 0 ? (
               <tr>
-                <td colSpan={4} className="p-4 text-gray-500">
+                <td colSpan={4} className="p-4 text-gray-500 dark:text-slate-400">
                   No attempts yet.
                 </td>
               </tr>
             ) : (
               attempts.map((a) => (
-                <tr key={a.id} className="border-t border-gray-200 dark:border-gray-700">
+                <tr key={a.id} className="border-t border-gray-200 dark:border-gray-700 dark:border-slate-800">
                   <td className="p-2">{a.company_name}</td>
                   <td className="p-2 capitalize">{a.section}</td>
                   <td className="p-2">

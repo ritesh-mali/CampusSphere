@@ -109,7 +109,7 @@ const StudentFinder = () => {
         <form onSubmit={searchStudents} className="flex items-center">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-[90%] mx-auto">
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                 Enrollment Number
               </label>
               <input
@@ -117,13 +117,13 @@ const StudentFinder = () => {
                 name="enrollmentNo"
                 value={searchParams.enrollmentNo}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                 placeholder="Enter enrollment number"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                 Name
               </label>
               <input
@@ -131,20 +131,20 @@ const StudentFinder = () => {
                 name="name"
                 value={searchParams.name}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
                 placeholder="Enter student name"
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                 Semester
               </label>
               <select
                 name="semester"
                 value={searchParams.semester}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
               >
                 <option value="">Select Semester</option>
                 {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
@@ -156,14 +156,14 @@ const StudentFinder = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
+              <label className="block text-sm font-medium text-gray-700 mb-1 dark:text-slate-300">
                 Branch
               </label>
               <select
                 name="branch"
                 value={searchParams.branch}
                 onChange={handleInputChange}
-                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-slate-900/50 dark:border-slate-800 dark:text-slate-200 dark:focus:ring-blue-600"
               >
                 <option value="">Select Branch</option>
                 {branches?.map((branch) => (
@@ -187,7 +187,7 @@ const StudentFinder = () => {
         </form>
 
         {!hasSearched && (
-          <div className="text-center mt-8 text-gray-600 flex flex-col items-center justify-center my-10 bg-white p-10 rounded-lg mx-auto w-[40%]">
+          <div className="text-center mt-8 text-gray-600 flex flex-col items-center justify-center my-10 bg-white p-10 rounded-lg mx-auto w-[40%] dark:text-slate-400">
             <img
               src="/assets/filter.svg"
               alt="Select filters"
@@ -205,9 +205,9 @@ const StudentFinder = () => {
           <div className="mt-8">
             <h2 className="text-xl font-semibold mb-4">Search Results</h2>
             <div className="overflow-x-auto">
-              <table className="min-w-full bg-white border border-gray-300">
+              <table className="min-w-full bg-white dark:bg-slate-900/50 dark:text-slate-200 border border-gray-300 dark:border-slate-700">
                 <thead>
-                  <tr className="bg-gray-100">
+                  <tr className="bg-gray-100 dark:bg-slate-900/40">
                     <th className="px-6 py-3 border-b text-left">Profile</th>
                     <th className="px-6 py-3 border-b text-left">Name</th>
                     <th className="px-6 py-3 border-b text-left">
@@ -258,7 +258,7 @@ const StudentFinder = () => {
 
         {showModal && selectedStudent && (
           <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-            <div className="bg-white rounded-lg p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="bg-white dark:bg-slate-900 dark:text-white rounded-lg p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto">
               <div className="flex justify-between items-start mb-6">
                 <h2 className="text-2xl font-bold">Student Details</h2>
                 <CustomButton
@@ -321,7 +321,7 @@ const StudentFinder = () => {
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="bg-gray-50 p-6 rounded-lg">
+                <div className="bg-gray-50 p-6 rounded-lg dark:bg-slate-900/50">
                   <h3 className="text-lg font-semibold mb-4">
                     Academic Information
                   </h3>
@@ -341,7 +341,7 @@ const StudentFinder = () => {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
+                <div className="bg-gray-50 p-6 rounded-lg dark:bg-slate-900/50">
                   <h3 className="text-lg font-semibold mb-4">
                     Contact Information
                   </h3>
@@ -361,7 +361,7 @@ const StudentFinder = () => {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
+                <div className="bg-gray-50 p-6 rounded-lg dark:bg-slate-900/50">
                   <h3 className="text-lg font-semibold mb-4">
                     Location Details
                   </h3>
@@ -385,7 +385,7 @@ const StudentFinder = () => {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 p-6 rounded-lg">
+                <div className="bg-gray-50 p-6 rounded-lg dark:bg-slate-900/50">
                   <h3 className="text-lg font-semibold mb-4">
                     Emergency Contact
                   </h3>

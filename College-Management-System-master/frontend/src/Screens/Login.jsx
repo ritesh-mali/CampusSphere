@@ -132,6 +132,20 @@ const Login = () => {
     if (type) setSelected(type.charAt(0).toUpperCase() + type.slice(1));
   }, [type]);
 
+  useEffect(() => {
+    // Force dark mode on login mount
+    document.documentElement.classList.add("dark");
+    return () => {
+      // Restore previous theme preference on unmount
+      const savedTheme = localStorage.getItem("cms_theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const shouldUseDark = savedTheme ? savedTheme === "dark" : prefersDark;
+      if (!shouldUseDark) {
+        document.documentElement.classList.remove("dark");
+      }
+    };
+  }, []);
+
   // Background effects
   useEffect(() => {
     // Twinkling stars

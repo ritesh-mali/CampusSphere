@@ -56,16 +56,16 @@ const UpdatePassword = () => {
   return (
     <div className="section-update-password min-h-screen bg-gradient-to-tr from-gray-100 via-white to-gray-100 flex items-center justify-center px-4">
       <div className="w-full max-w-2xl lg:w-1/2 px-6 py-12">
-        <h1 className="text-4xl font-bold text-gray-800 text-center mb-6">
+        <h1 className="text-4xl font-bold text-gray-800 text-center mb-6 dark:text-slate-100">
           Update Password
         </h1>
         <form
-          className="section-update-password__card w-full p-8 bg-white rounded-2xl shadow-xl border border-gray-200"
+          className="section-update-password__card w-full p-8 bg-white rounded-2xl shadow-xl border border-gray-200 dark:border-slate-800"
           onSubmit={onSubmit}
         >
           <div className="mb-6">
             <label
-              className="block text-gray-800 text-sm font-medium mb-2"
+              className="block text-gray-800 text-sm font-medium mb-2 dark:text-slate-100"
               htmlFor="newPassword"
             >
               New Password
@@ -76,13 +76,13 @@ const UpdatePassword = () => {
               onChange={(e) => setNewPassword(e.target.value)}
               value={newPassword}
               required
-              className="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-700"
             />
           </div>
 
           <div className="mb-6">
             <label
-              className="block text-gray-800 text-sm font-medium mb-2"
+              className="block text-gray-800 text-sm font-medium mb-2 dark:text-slate-100"
               htmlFor="confirmPassword"
             >
               Confirm Password
@@ -93,7 +93,7 @@ const UpdatePassword = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
               value={confirmPassword}
               required
-              className="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 dark:border-slate-700"
             />
           </div>
 
