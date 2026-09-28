@@ -1,0 +1,19 @@
+@import "./_keyframes.css";
+
+.section-events {
+  position: relative;
+  animation: cms-section-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.section-events::before {
+  content: "";
+  display: block;
+  width: 100%;
+  max-width: 220px;
+  height: 3px;
+  margin-bottom: 0.5rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f97316, #ec4899, #8b5cf6);
+  background-size: 200% 100%;
+  animation: cms-shimmer-border 9s linear infinite;
+}

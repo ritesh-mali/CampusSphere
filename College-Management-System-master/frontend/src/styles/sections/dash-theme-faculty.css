@@ -1,0 +1,38 @@
+@import "./_keyframes.css";
+
+/* Emerald / sage — faculty */
+.dash-root.dash-theme-faculty {
+  --dash-aurora-1: rgba(52, 211, 153, 0.14);
+  --dash-aurora-2: rgba(20, 184, 166, 0.12);
+}
+
+.dash-root.dash-theme-faculty .dash-main-surface {
+  box-shadow:
+    0 0 0 1px rgba(45, 212, 191, 0.14),
+    0 12px 40px -12px rgba(16, 185, 129, 0.14),
+    0 4px 24px -8px rgba(20, 184, 166, 0.1);
+}
+
+.dash-root.dash-theme-faculty .dash-main-surface::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  padding: 1px;
+  background: linear-gradient(
+    115deg,
+    rgba(52, 211, 153, 0.4),
+    rgba(20, 184, 166, 0.28),
+    rgba(5, 150, 105, 0.32),
+    rgba(52, 211, 153, 0.4)
+  );
+  background-size: 200% 200%;
+  animation: cms-shimmer-border 9s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.42;
+}

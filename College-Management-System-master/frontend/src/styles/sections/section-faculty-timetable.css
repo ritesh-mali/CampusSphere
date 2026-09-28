@@ -1,0 +1,18 @@
+@import "./_keyframes.css";
+
+.section-faculty-timetable {
+  position: relative;
+  animation: cms-section-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.section-faculty-timetable::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: min(240px, 40%);
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #10b981, #14b8a6);
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.35);
+}

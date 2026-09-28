@@ -1,0 +1,20 @@
+@import "./_keyframes.css";
+
+.section-faculty-profile {
+  animation: cms-section-in 0.46s cubic-bezier(0.22, 1, 0.36, 1) both;
+  position: relative;
+  padding-top: 10px;
+}
+
+.section-faculty-profile::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  max-width: 160px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #10b981, #0ea5e9);
+  opacity: 0.9;
+}

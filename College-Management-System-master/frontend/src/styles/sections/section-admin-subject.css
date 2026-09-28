@@ -1,0 +1,20 @@
+@import "./_keyframes.css";
+
+.section-admin-subject {
+  position: relative;
+  animation: cms-section-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.section-admin-subject::after {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  right: -20px;
+  top: 10%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.15), transparent 70%);
+  animation: cms-orb-drift 17s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}

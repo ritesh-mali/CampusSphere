@@ -1,0 +1,20 @@
+@import "./_keyframes.css";
+
+.section-placement-hub {
+  position: relative;
+  animation: cms-section-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.section-placement-hub::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 3rem;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.15), transparent 70%);
+  animation: cms-orb-drift 15s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}

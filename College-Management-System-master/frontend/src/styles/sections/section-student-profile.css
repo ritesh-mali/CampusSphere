@@ -1,0 +1,14 @@
+@import "./_keyframes.css";
+
+.section-student-profile {
+  animation: cms-section-in 0.46s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.section-student-profile > div:first-child {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.section-student-profile > div:first-child:hover {
+  transform: translateY(-2px) scale(1.005);
+  box-shadow: 0 24px 48px -16px rgba(99, 102, 241, 0.35);
+}

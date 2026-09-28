@@ -1,0 +1,18 @@
+@import "./_keyframes.css";
+
+.section-feedback-faculty {
+  animation: cms-section-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  position: relative;
+}
+
+.section-feedback-faculty::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #059669, #0ea5e9);
+  opacity: 0.7;
+}

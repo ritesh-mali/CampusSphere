@@ -1,0 +1,17 @@
+@import "./_keyframes.css";
+
+.section-faculty-material {
+  position: relative;
+  animation: cms-section-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) 0.03s both;
+}
+
+.section-faculty-material::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 100px;
+  background: radial-gradient(ellipse 60% 80% at 50% 100%, rgba(20, 184, 166, 0.1), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+  animation: cms-soft-pulse 6s ease-in-out infinite;
+}

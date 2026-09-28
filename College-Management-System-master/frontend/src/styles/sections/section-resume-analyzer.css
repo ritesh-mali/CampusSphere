@@ -1,0 +1,19 @@
+@import "./_keyframes.css";
+
+.section-resume-analyzer {
+  position: relative;
+  animation: cms-section-in 0.44s cubic-bezier(0.22, 1, 0.36, 1) both;
+  padding-left: 12px;
+}
+
+.section-resume-analyzer::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2.5rem;
+  width: 3px;
+  height: min(120px, 40%);
+  border-radius: 999px;
+  background: linear-gradient(180deg, #3b82f6, #8b5cf6);
+  opacity: 0.85;
+}

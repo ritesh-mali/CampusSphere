@@ -1,0 +1,24 @@
+@import "./_keyframes.css";
+
+.section-attendance-faculty {
+  position: relative;
+  animation: cms-section-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.section-attendance-faculty:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px -14px rgba(16, 185, 129, 0.22);
+}
+
+.section-attendance-faculty::after {
+  content: "";
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  width: 48px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #10b981, #14b8a6);
+  animation: cms-shimmer-border 6s linear infinite;
+}

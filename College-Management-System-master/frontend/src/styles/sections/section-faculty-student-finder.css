@@ -1,0 +1,18 @@
+@import "./_keyframes.css";
+
+.section-faculty-student-finder {
+  animation: cms-section-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.section-faculty-student-finder::before {
+  content: "";
+  display: block;
+  height: 3px;
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 1rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #059669, #0d9488, #06b6d4);
+  background-size: 200% 100%;
+  animation: cms-shimmer-border 7s linear infinite;
+}

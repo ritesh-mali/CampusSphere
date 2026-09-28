@@ -1,0 +1,19 @@
+@import "./_keyframes.css";
+
+.section-faculty-add-marks {
+  position: relative;
+  animation: cms-section-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.section-faculty-add-marks::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  right: 10%;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f59e0b;
+  box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.2);
+  animation: cms-soft-pulse 2.5s ease-in-out infinite;
+}

@@ -1,0 +1,18 @@
+@import "./_keyframes.css";
+
+.section-admin-branch {
+  position: relative;
+  animation: cms-section-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.section-admin-branch::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  top: 0;
+  width: 4px;
+  height: 48px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #f472b6, #8b5cf6);
+  opacity: 0.85;
+}

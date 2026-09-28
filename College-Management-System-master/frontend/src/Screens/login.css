@@ -1,0 +1,282 @@
+/* =========================================
+   Base Layout & Layering Fixes
+   ========================================= */
+* {
+  box-sizing: border-box;
+}
+
+.login-scene {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #080614; /* Deep space dark base */
+  overflow: hidden; 
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =========================================
+   Z-Index Hierarchy:
+   1: Blobs & Stars
+   2: Canvas (Constellations)
+   3: Background Text (CAMPUSSPHERE)
+   10: Main Login Card
+   ========================================= */
+
+.login-blob,
+.login-stars,
+.login-particles,
+.login-ring {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.login-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* =========================================
+   Background Text (CAMPUSSPHERE)
+   ========================================= */
+.login-bg-brand {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Adjusted clamp so it doesn't overflow and hide off-screen */
+  font-size: clamp(2.5rem, 9vw, 11rem); 
+  font-weight: 800;
+  letter-spacing: 0.15em; /* Spaced out slightly more */
+  color: transparent;
+  /* Thicker, brighter stroke so it's visible behind the card */
+  -webkit-text-stroke: 2px rgba(186, 144, 255, 0.45);
+  text-transform: uppercase;
+  z-index: 3; /* Placed exactly between canvas and card */
+  pointer-events: none;
+  white-space: nowrap;
+  filter: drop-shadow(0 0 20px rgba(167, 139, 250, 0.15));
+  animation: pulseGlow 4s ease-in-out infinite alternate;
+}
+
+/* =========================================
+   Glowing Fluid Blobs
+   ========================================= */
+.login-blob {
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.45; /* Slightly reduced to prevent washing out text */
+}
+
+.login-blob-1 {
+  top: -10%;
+  left: -5%;
+  width: 45vw;
+  height: 45vw;
+  background: radial-gradient(circle, rgba(124,58,237,0.7) 0%, rgba(76,29,149,0) 70%);
+  animation: float 20s ease-in-out infinite alternate;
+}
+
+.login-blob-2 {
+  bottom: -15%;
+  right: -5%;
+  width: 55vw;
+  height: 55vw;
+  background: radial-gradient(circle, rgba(59,130,246,0.6) 0%, rgba(29,78,216,0) 70%);
+  animation: float 25s ease-in-out infinite alternate-reverse;
+}
+
+/* =========================================
+   Neon Rings
+   ========================================= */
+.login-ring {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(167, 139, 250, 0.15);
+}
+
+.login-ring-1 {
+  width: 65vw;
+  height: 65vw;
+  box-shadow: inset 0 0 50px rgba(167, 139, 250, 0.05);
+}
+
+.login-ring-2 {
+  width: 85vw;
+  height: 85vw;
+  border: 1px dashed rgba(59, 130, 246, 0.2);
+  animation: spinSlow 150s linear infinite;
+}
+
+/* =========================================
+   Glassmorphism Card & Wrap
+   ========================================= */
+.login-card-wrap {
+  position: relative;
+  z-index: 10; /* Ensures the card is ALWAYS on top */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px; 
+  background: rgba(18, 16, 30, 0.65); /* Darker base for better text contrast */
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  box-shadow: 
+    0 25px 50px -12px rgba(0, 0, 0, 0.7), 
+    0 0 0 1px rgba(167, 139, 250, 0.1), 
+    0 0 40px rgba(124, 58, 237, 0.15);
+  padding: 1.5rem;
+}
+
+/* Fix for Foreground Text Hiding */
+.login-card label,
+.login-card .text-sm,
+.login-card h3 { /* Assuming CardTitle renders an h3 or similar */
+  color: #f8fafc !important; /* Bright white for primary text */
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* Helps text stand out against blur */
+}
+
+.login-card p {
+  color: #cbd5e1 !important; /* Lighter grey for descriptions */
+}
+
+/* Form Inputs */
+.login-card input {
+  background: rgba(0, 0, 0, 0.4) !important; /* Darker input background */
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  color: #ffffff !important;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+  height: 2.75rem; /* Ensures consistent height */
+}
+
+.login-card input:focus {
+  border-color: rgba(167, 139, 250, 0.8) !important;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.2) !important;
+  outline: none;
+  background: rgba(0, 0, 0, 0.6) !important;
+}
+
+.login-card input::placeholder {
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+
+/* SVG Icon Fixes inside input wrappers */
+.login-card svg {
+  color: rgba(255, 255, 255, 0.6) !important;
+  z-index: 11;
+}
+
+/* Custom Button Styling */
+.login-card button[type="submit"] {
+  background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+  color: white !important;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 2.75rem;
+}
+
+.login-card button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6);
+}
+
+/* =========================================
+   Footer Text
+   ========================================= */
+.login-footer {
+  margin-top: 1.5rem;
+  color: rgba(148, 163, 184, 0.8);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+/* =========================================
+   Animations
+   ========================================= */
+@keyframes float {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(2vw, 2vh) scale(1.05); }
+  100% { transform: translate(-1vw, 3vh) scale(0.95); }
+}
+
+@keyframes spinSlow {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+  0% { opacity: 0.6; filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.1)); }
+  100% { opacity: 1; filter: drop-shadow(0 0 25px rgba(167, 139, 250, 0.4)); }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.1; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 4px rgba(255,255,255,0.5); }
+}
+
+@keyframes ptRise {
+  0% { transform: translateY(0) scale(1); opacity: 0; }
+  10% { opacity: 1; }
+  80% { opacity: 0.8; }
+  100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+}
+
+/* =========================================
+   Mobile Responsiveness
+   ========================================= */
+@media screen and (max-width: 768px) {
+  .login-card {
+    padding: 1.25rem;
+  }
+  
+  .login-bg-brand {
+    font-size: clamp(2rem, 12vw, 5rem); /* Prevents overflow on tablets/phones */
+    letter-spacing: 0.05em;
+  }
+
+  .login-blob {
+    filter: blur(60px); 
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .login-card-wrap {
+    padding: 0 1rem;
+  }
+
+  .login-card {
+    border-radius: 16px;
+    padding: 1rem;
+  }
+
+  .login-bg-brand {
+    font-size: 14vw; /* Locks exactly to screen width proportions */
+    -webkit-text-stroke: 1px rgba(186, 144, 255, 0.4); /* Thinner stroke for small screens */
+  }
+  
+  .login-ring {
+    display: none; 
+  }
+}

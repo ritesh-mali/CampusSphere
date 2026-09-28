@@ -1,0 +1,38 @@
+@import "./_keyframes.css";
+
+/* Violet / rose — admin control */
+.dash-root.dash-theme-admin {
+  --dash-aurora-1: rgba(167, 139, 250, 0.16);
+  --dash-aurora-2: rgba(244, 114, 182, 0.1);
+}
+
+.dash-root.dash-theme-admin .dash-main-surface {
+  box-shadow:
+    0 0 0 1px rgba(167, 139, 250, 0.16),
+    0 12px 40px -12px rgba(139, 92, 246, 0.18),
+    0 4px 24px -8px rgba(244, 114, 182, 0.08);
+}
+
+.dash-root.dash-theme-admin .dash-main-surface::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  padding: 1px;
+  background: linear-gradient(
+    125deg,
+    rgba(167, 139, 250, 0.42),
+    rgba(244, 114, 182, 0.28),
+    rgba(99, 102, 241, 0.32),
+    rgba(167, 139, 250, 0.42)
+  );
+  background-size: 200% 200%;
+  animation: cms-shimmer-border 10s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.44;
+}

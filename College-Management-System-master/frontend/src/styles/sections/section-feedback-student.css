@@ -1,0 +1,19 @@
+@import "./_keyframes.css";
+
+.section-feedback-student {
+  animation: cms-section-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-feedback-student::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #6366f1, #a855f7, #22d3ee, #6366f1);
+  background-size: 200% 100%;
+  animation: cms-shimmer-border 8s linear infinite;
+}

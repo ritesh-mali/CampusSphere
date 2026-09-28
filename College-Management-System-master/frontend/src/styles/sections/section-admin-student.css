@@ -1,0 +1,18 @@
+@import "./_keyframes.css";
+
+.section-admin-student {
+  position: relative;
+  animation: cms-section-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.section-admin-student::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: min(320px, 55%);
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #8b5cf6, #ec4899);
+  animation: cms-shimmer-border 8s linear infinite;
+}

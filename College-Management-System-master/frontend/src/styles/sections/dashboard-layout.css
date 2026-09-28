@@ -1,0 +1,43 @@
+@import "./_keyframes.css";
+
+/* Shell: main content canvas */
+.dash-root .dash-main-surface {
+  animation: cms-section-in 0.42s cubic-bezier(0.22, 1, 0.36, 1) both;
+  position: relative;
+  isolation: isolate;
+}
+
+.dash-root .dash-main-surface::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+  background: radial-gradient(
+      520px 180px at 90% 0%,
+      var(--dash-aurora-1, rgba(99, 102, 241, 0.07)),
+      transparent 60%
+    ),
+    radial-gradient(400px 160px at 0% 100%, var(--dash-aurora-2, rgba(139, 92, 246, 0.06)), transparent 55%);
+  animation: cms-orb-drift 14s ease-in-out infinite;
+}
+
+.dash-root .dash-main-surface > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Sidebar card lift on theme */
+.dash-root.dash-theme-student .rounded-2xl.border,
+.dash-root.dash-theme-faculty .rounded-2xl.border,
+.dash-root.dash-theme-admin .rounded-2xl.border {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.dash-root.dash-theme-student aside .rounded-2xl:hover,
+.dash-root.dash-theme-faculty aside .rounded-2xl:hover,
+.dash-root.dash-theme-admin aside .rounded-2xl:hover {
+  transform: translateY(-1px);
+}

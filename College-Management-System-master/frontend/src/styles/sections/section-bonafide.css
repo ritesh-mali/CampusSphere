@@ -1,0 +1,25 @@
+@import "./_keyframes.css";
+
+.section-bonafide {
+  animation: cms-section-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  position: relative;
+}
+
+.section-bonafide::after {
+  content: "";
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  right: 12px;
+  top: 12px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(236, 72, 153, 0.1));
+  animation: cms-orb-drift 12s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section-bonafide > * {
+  position: relative;
+  z-index: 1;
+}
